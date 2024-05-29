@@ -24,6 +24,7 @@ VALUES
 
 CREATE TABLE challenge (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
   description TEXT,
   type VARCHAR(255) NOT NULL,
   instructions TEXT,
