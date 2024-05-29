@@ -11,21 +11,21 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 CREATE TABLE room (
-  room_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  room_name VARCHAR(255) NOT NULL,
-  next_room INT 
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  next INT 
 );
 
-INSERT INTO room (room_name, next_room)
+INSERT INTO room (name, next)
 VALUES 
   ('lobby','2'),
   ('gallery','3'),
   ('exhibition', null);
 
 CREATE TABLE challenge (
-  challenge_id INT PRIMARY KEY AUTO_INCREMENT,
-  challengeDescription TEXT,
-  challengeType VARCHAR(255) NOT NULL,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  description TEXT,
+  type VARCHAR(255) NOT NULL,
   instructions TEXT,
   answer VARCHAR(255) NOT NULL,
   clue VARCHAR(255),
@@ -34,8 +34,8 @@ CREATE TABLE challenge (
 );
 
 CREATE TABLE user (
-  user_id INT PRIMARY KEY AUTO_INCREMENT,
-  username VARCHAR(255) NOT NULL,
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
@@ -50,7 +50,7 @@ CREATE TABLE save (
 );
 
 
-INSERT INTO challenge ( challengeType, challengeDescription, instructions, answer, clue, room_id)
+INSERT INTO challenge ( type, description, instructions, answer, clue, room_id)
 VALUES 
   ('anagramme', "Attends... quelque chose attire mon attention. Peut-être qu'une visite au bureau pourrait révéler plus que prévu.", "Attendez une minute... quelque chose me semble étrange. Dans ce  contexte, un rébus semble être la clé pour percer ce mystère.  Déchiffrez-le avec soin pour découvrir quel trésor il cache parmi les  œuvres d'art du Louvre. Votre succès dans cette épreuve pourrait bien  nous guider vers la prochaine étape de notre aventure. Bonne chance !",'coucou','Le Radeau de la Meduse', 1),
   ('puzzle', "En examinant de près le bureau, mes yeux ont capté quelque chose  d'étrange. Des lambeaux de papier déchiré, cachés à gauche de la pièce. Quel mystère se dissimule-t-il dans ces fragments  oubliés ? ", "Votre mission est de replacer dans le bon ordre les  différentes parties de la carte du  Musée pour pouvoir vous repérer parmi les différents salles. 
