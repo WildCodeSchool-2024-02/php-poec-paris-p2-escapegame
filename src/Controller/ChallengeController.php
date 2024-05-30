@@ -33,7 +33,17 @@ class ChallengeController extends AbstractController
 
     public function displayChallengeLayout(int $id): string
     {
+        $challengeManager = new ChallengeManager();
         $challengeType = $this->getChallengeType($id);
-        return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+
+        if ($challengeType['type'] === 'puzzle') {
+            $images = $challengeManager->setAssets(1, 3);
+            return $this->twig->render('Challenges/puzzle.html.twig', [
+                'challengeType' => $challengeType,
+                'images' => $images
+            ]);
+        } else {
+            return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+        }
     }
 }
