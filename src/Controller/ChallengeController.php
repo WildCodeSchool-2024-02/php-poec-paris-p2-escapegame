@@ -11,13 +11,12 @@ class ChallengeController extends AbstractController
     /**
      * Show informations for a specific challenge
      */
-    public function show(int $id): string
+    public function show(int $id): array
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
-        var_dump($challenge);
 
-        return $this->twig->render('Home/index.html.twig');
+        return $challenge;
     }
 
     public function getChallengeType(int $id): array|string
@@ -35,12 +34,14 @@ class ChallengeController extends AbstractController
     {
         $challengeManager = new ChallengeManager();
         $challengeType = $this->getChallengeType($id);
+        $challenge = $this->show($id);
 
         if ($challengeType['type'] === 'puzzle') {
             $images = $challengeManager->setAssets(1, 3);
             return $this->twig->render('Challenges/puzzle.html.twig', [
                 'challengeType' => $challengeType,
-                'images' => $images
+                'images' => $images,
+                'challenge' => $challenge
             ]);
         } else {
             return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
