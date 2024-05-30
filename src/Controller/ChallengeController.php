@@ -34,6 +34,11 @@ class ChallengeController extends AbstractController
     public function displayChallengeLayout(int $id): string
     {
         $challengeType = $this->getChallengeType($id);
-        return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+        var_dump($challengeType);
+        if ($challengeType['type'] === 'anagramme'){
+            return $this->twig->render('Challenges/anagramme.html.twig');
+        } else {
+            return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+        }
     }
 }
