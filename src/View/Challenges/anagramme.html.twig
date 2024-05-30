@@ -1,5 +1,12 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/puzzle.css">
+{% endblock %}
+
 {% block content %}
-This challenge is an anagramme
+<h1>This challenge is an anagramme</h1>
+{% for image in images %}
+   <img src='{{ image }}' alt='list of paintings'>
+{% endfor %}
 {% endblock %}

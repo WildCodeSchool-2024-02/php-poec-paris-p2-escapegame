@@ -30,7 +30,8 @@ class ChallengeManager extends AbstractManager
     public function setAssets(int $roomId, int $id)
     {
         if ($roomId === 1 && $id === 1) {
-            $this->assets = ["../../public/assets/images/text1.png", "../../public/assets/images/text2.png"];
+            $assets = ["/assets/images/text1.png", "/assets/images/text2.png"];
         }
+        return $assets;
     }
 }
