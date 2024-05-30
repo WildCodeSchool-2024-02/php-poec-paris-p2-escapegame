@@ -35,7 +35,7 @@ class ChallengeController extends AbstractController
     {
         $challengeType = $this->getChallengeType($id);
         var_dump($challengeType);
-        if ($challengeType['type'] === 'anagramme'){
+        if ($challengeType['type'] === 'anagramme') {
             return $this->twig->render('Challenges/anagramme.html.twig');
         } else {
             return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
