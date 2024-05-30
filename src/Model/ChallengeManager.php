@@ -7,6 +7,7 @@ use App\Model\AbstractManager;
 class ChallengeManager extends AbstractManager
 {
     public const TABLE = 'challenge';
+
     public array $assets;
 
     public function __construct()
@@ -27,11 +28,11 @@ class ChallengeManager extends AbstractManager
         return $statement->fetch();
     }
 
-    public function setAssets(int $roomId, int $id)
+    public function setAssets(int $roomId, int $id): array
     {
         if ($roomId === 1 && $id === 1) {
-            $assets = ["/assets/images/text1.png", "/assets/images/text2.png"];
+            $this->assets = ["/assets/images/text1.png", "/assets/images/text2.png"];
         }
-        return $assets;
+        return $this->assets;
     }
 }
