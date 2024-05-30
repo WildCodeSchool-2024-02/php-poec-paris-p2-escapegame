@@ -26,7 +26,7 @@ class Connection
         $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    public function getconnection(): PDO
+    public function getConnection(): PDO
     {
         return $this->connection;
     }
