@@ -6,10 +6,6 @@
     gap: 6rem;
 }
 
-p {
-    max-width: 20rem;
-}
-
 .puzzle__container {
     display: grid;
     grid-template-columns: repeat(3, 103px);
@@ -18,23 +14,33 @@ p {
     grid-auto-flow: row;
 }
 
+p {
+    max-width: 75%;
+}
+
 #img1 {
     grid-area: 1 / 1 / 2 / 2;
+    box-shadow: 1px 1px 1px #000000;
 }
 #img2 {
     grid-area: 1 / 2 / 2 / 3;
+    box-shadow: 1px 1px 1px #000000;
 }
 #img3 {
     grid-area: 1 / 3 / 2 / 4;
+    box-shadow: 1px 1px 1px #000000;
 }
 #img4 {
     grid-area: 2 / 1 / 3 / 2;
+    box-shadow: 1px 1px 1px #000000;
 }
 #img5 {
     grid-area: 2 / 2 / 3 / 3;
+    box-shadow: 1px 1px 1px #000000;
 }
 #img6 {
     grid-area: 2 / 3 / 3 / 4;
+    box-shadow: 1px 1px 1px #000000;
 }
 
 .puzzle__solution-container {

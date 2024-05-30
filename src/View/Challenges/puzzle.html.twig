@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %} {% block stylesheet %}
 <link rel="stylesheet" href="/assets/css/puzzle.css" />
-{% endblock %} {% block content %}
+{% endblock %} {% block content %} {% block javascript %}
 <script>
     function allowDrop(ev) {
         ev.preventDefault();
@@ -16,30 +16,43 @@
         ev.target.appendChild(document.getElementById(data));
     }
 </script>
-<div class="puzzle">
-    <div class="puzzle__container">
-        {% for image in images %}
-        <img
-            src="{{ image }}"
-            alt="Image
+{% endblock %}
+<div class="card__outer">
+    <h2>{{ challenge.name }}</h2>
+    <div class="card__inner">
+        <div class="card__content">
+            <p>{{ challenge.instructions }}</p>
+            <div class="puzzle">
+                <div class="puzzle__container">
+                    {% for image in images %}
+                    <img
+                        src="{{ image }}"
+                        alt="Image
         {{ loop.index }}"
-            id="img{{ loop.index }}"
-            draggable="true"
-            ondragstart="drag(event)"
-            ondrop="drop(event)"
-            ondragover="allowDrop(event)"
-        />
-        {% endfor %}
+                        id="img{{ loop.index }}"
+                        draggable="true"
+                        ondragstart="drag(event)"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    />
+                    {% endfor %}
+                </div>
+                <div class="puzzle__solution-container">
+                    {% for image in images %}
+                    <div
+                        draggable="true"
+                        class="puzzle__solution-container__block"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    ></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="puzzle__solution-container">
-        {% for image in images %}
-        <div
-            draggable="true"
-            class="puzzle__solution-container__block"
-            ondrop="drop(event)"
-            ondragover="allowDrop(event)"
-        ></div>
-        {% endfor %}
+    <div class="button__container">
+        <button id="clue">Indice</button>
+        <button id="validate">Valider</button>
     </div>
 </div>
 
