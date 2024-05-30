@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Model\ChallengeManager;
+use RangeException;
 
 class ChallengeController extends AbstractController
 {
@@ -14,8 +16,24 @@ class ChallengeController extends AbstractController
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
         var_dump($challenge);
-        
+
         return $this->twig->render('Home/index.html.twig');
     }
 
+    public function getChallengeType(int $id): array|string
+    {
+        $challengeManager = new ChallengeManager();
+        $challenge = $challengeManager->selectChallengeType($id);
+        if (empty($challenge)) {
+            echo $this->twig->render('Error/error.html.twig');
+            die();
+        }
+        return $challenge;
+    }
+
+    public function displayChallengeLayout(int $id): string
+    {
+        $challengeType = $this->getChallengeType($id);
+        return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+    }
 }

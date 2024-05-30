@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model\AbstractManager;
+
 class ChallengeManager extends AbstractManager
 {
     public const TABLE = 'challenge';
@@ -13,11 +14,22 @@ class ChallengeManager extends AbstractManager
         parent::__construct();
     }
 
-    public function setAssets(int $room_id, int $id)
+    /**
+     * Get one row from database by ID.
+     */
+    public function selectChallengeType(int $id): array|false
     {
-        var_dump('test');
-        die();
-        if ($room_id === 1 && $id === 1){
+        // prepared request
+        $statement = $this->pdo->prepare("SELECT type FROM " . static::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function setAssets(int $roomId, int $id)
+    {
+        if ($roomId === 1 && $id === 1) {
             $this->assets = ["../../public/assets/images/text1.png", "../../public/assets/images/text2.png"];
         }
     }

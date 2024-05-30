@@ -8,4 +8,5 @@
 // e.g route '/item/edit?id=1' will execute $itemController->edit(1)
 return [
     'challenges/show' => ['ChallengeController', 'show', ['id']],
+    'challenges/type' => ['ChallengeController', 'displayChallengeLayout', ['id']],
 ];
