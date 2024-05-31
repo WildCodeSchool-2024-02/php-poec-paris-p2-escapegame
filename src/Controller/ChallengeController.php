@@ -53,29 +53,27 @@ class ChallengeController extends AbstractController
         }
     }
 
-    public function verifyChallengeAnswer()
+    public function validate()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['id'])) {
                 $id = (int)$_POST['id'];
-                $user_answer = array_map('trim', array_map('htmlentities', $_POST));
+                $userAnswer = array_map('trim', array_map('htmlentities', $_POST));
 
                 $challengeManager = new ChallengeManager();
-                $correct_answer = $challengeManager->selectChallengeAnswer($id);
+                $correctAnswer = $challengeManager->selectChallengeAnswer($id);
 
-                if ($user_answer['user_answer'] === $correct_answer['answer']) {
-                    header ('Location: https://odyssey.wildcodeschool.com/');
+                if ($userAnswer['user_answer'] === $correctAnswer['answer']) {
+                    header('Location: https://odyssey.wildcodeschool.com/');
                     exit;
                 } else {
                     return 'false';
                 }
             } else {
-                throw new \Exception('ID parameter missing in POST request');
+                throw new Exception('ID parameter missing in POST request');
             }
         } else {
-            throw new \Exception('Invalid request method');
+            throw new Exception('Invalid request method');
         }
-        
     }
 }
-

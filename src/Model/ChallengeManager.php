@@ -41,7 +41,6 @@ class ChallengeManager extends AbstractManager
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetch();  
+        return $statement->fetch();
     }
-   
 }
