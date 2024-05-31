@@ -1,10 +1,17 @@
 body {
     background-color: darkgray;
     color: black;
+    height: 100vh;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     color:white;
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
 }
 
 main {
@@ -16,15 +23,74 @@ main {
 }
 
 section {
-    padding: 5%;
+    padding: 0 2%;
     background-color: #DEDEDE;
     display: flex;
     flex-direction: row;
     border-radius: 5px ;
 }
 
-.assets {
-    padding: 5%;
+ol {
+    padding: 2%;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+aside {
     display: flex;
     flex-direction: row;
+    padding: 1%;
+    justify-content: flex-end;
+}
+
+input {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    width: 450px;
+    height: 50px;
+    border-width: 0px;
+    border-radius: 50px 50px 50px 50px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 2px 0px #333333;
+    padding:10px;
+    font-size: 2rem;
+}
+
+button {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px;
+  height: 50px;
+  border-width: 0px;
+  border-radius: 50px 50px 50px 50px;
+  background-color: #f4b659;
+  box-shadow: 0px 0px 2px 0px #333333;
+  margin: 10px;
+}
+
+button .mb-text {
+  color: #000000;
+  font-family: Tahoma;
+  font-size: 15px;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1em;
+  box-sizing: border-box;
+  display: block;
+  background-color: unset;
+  position: relative;
+  padding: 18px 0px 0px 0px;
+}
+
+.clue {
+    background-color: white;
 }

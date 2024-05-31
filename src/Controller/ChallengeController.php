@@ -15,9 +15,17 @@ class ChallengeController extends AbstractController
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
-        var_dump($challenge);
+        $challenge = $challengeManager->selectOneById($id);
+        $name = $challenge['name'];
+        $instructions = $challenge['instructions'];
+        $challengeType =$challenge['type'];
 
-        return $this->twig->render('Home/index.html.twig');
+        return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig', [
+            'challengeType' => $challengeType,
+            'name' => $name,
+            'instructions' => $instructions,
+            'id' => $id
+        ]);
     }
 
     public function getChallengeType(int $id): array|string
@@ -29,28 +37,6 @@ class ChallengeController extends AbstractController
             die();
         }
         return $challenge;
-    }
-
-    public function displayChallengeLayout(int $id): string
-    {
-        $challengeManager = new ChallengeManager();
-        $challengeType = $this->getChallengeType($id);
-
-        if ($challengeType['type'] === 'anagramme') {
-            $challenge = $challengeManager->selectOneById($id);
-            $name = $challenge['name'];
-            $instructions = $challenge['instructions'];
-            $images = $challengeManager->setAssets(1, 1);
-            return $this->twig->render('Challenges/anagramme_layout.html.twig', [
-                'challengeType' => $challengeType,
-                'images' => $images,
-                'name' => $name,
-                'instructions' => $instructions,
-                'id' => $id
-            ]);
-        } else {
-            return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
-        }
     }
 
     public function validate()

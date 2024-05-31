@@ -8,19 +8,20 @@
 <main>
 	<h1>Challenge {{ id }}</h1>
    <section>
-      <div class='assets'>
-         {% for image in images %}
-            <img src='{{ image }}' alt='list of paintings'>
-         {% endfor %}
-      </div>
-      <div>
+      {% include 'Assets/challenge_id_1.html.twig' %}
+      <article>
          <p>{{ instructions }}</p>
+         <p>⛵ ✌️ 🪼</p>
          <form method='post' action="/challenges/validation" id='validation'>
             <input type="hidden" name="id" value="{{ id }}">
             <input type="text" name='user_answer'></input>
-            <button id='validation'>Valider</button>
          </form>
-      </div>
-   </section
+      </article>
+   </section>
+   <aside>
+      <button class='clue' type="button">Indice</button>
+      <button class='validate' type="submit" form="validation">Valider</button>
+   </aside>
+   
 </main>
 {% endblock %}
