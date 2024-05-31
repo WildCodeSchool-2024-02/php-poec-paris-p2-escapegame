@@ -1,6 +1,6 @@
-{% extends 'layout.html.twig' %} {% block content %}
+{% extends 'layout.html.twig' %} {% block stylesheet %}
 <link rel="stylesheet" href="/assets/css/credits.css" />
-{% block stylesheet %}
+{% endblock %} {% block content %}
 <div class="credits">
     <span>
         <span
@@ -38,5 +38,5 @@
             {% endfor %}
         </span>
     </span>
-    {% endblock %}
 </div>
+{% endblock %}
