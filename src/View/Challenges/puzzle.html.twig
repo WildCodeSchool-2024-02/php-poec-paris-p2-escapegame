@@ -39,7 +39,7 @@
                 {% endfor %}
                 <div class="button__container">
                     <button type="clue" id="clue">Indice</button>
-                    <button type="submit" id="validate">Valider</button>
+                    <button type="submit" id="validate" disabled>Valider</button>
                 </div>
             </form>
         </div>
@@ -61,9 +61,13 @@
     const userSolution = [];
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
+
+        if (ev.target.tagName === "IMG" || ev.target.querySelector("img")) {
+            return;
+        }
+        const data = ev.dataTransfer.getData("text");
         const boxId = ev.target.id;
-        const boxIndex = parseInt(boxId.replace("box", "")) - 1; // Get box index (0-based)
+        const boxIndex = parseInt(boxId.replace("box", "")) - 1;
         ev.target.appendChild(document.getElementById(imgId));
         while (userSolution.length < boxIndex + 1) {
             userSolution.push(null);
@@ -77,8 +81,23 @@
         input.name = "userSolution";
         input.value = JSON.stringify(userSolution);
         document.querySelector("form.puzzle").appendChild(input);
-        
-        console.log(userSolution);
+        checkArrayAndUpdateButton(userSolution);
+    }
+
+    function checkArrayAndUpdateButton(arr) {
+        const button = document.getElementById('validate');
+        const containsNull = userSolution.some(element => element === null);
+        if (!containsNull) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
+        checkArrayAndUpdateButton(userSolution);
+
+        function updateArrayAndCheck(newElement, index) {
+        userSolution[index] = newElement;
+        checkArrayAndUpdateButton(userSolution);
+    }
     }
 </script>
 {% endblock %} {% endblock %}

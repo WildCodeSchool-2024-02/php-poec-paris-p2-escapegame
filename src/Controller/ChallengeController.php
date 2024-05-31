@@ -28,26 +28,24 @@ class ChallengeController extends AbstractController
     public function validate(int $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['userSolution'])) {
-                $jsonString = $_POST['userSolution'];
-                $userSolution = json_decode($jsonString, true);
-                $userSolution = array_map('trim', array_map('htmlentities', $userSolution));
-                $userSolutionString = implode('', $userSolution);
-                var_dump($userSolutionString);
+            $jsonString = $_POST['userSolution'];
+            $userSolution = json_decode($jsonString, true);
+            $userSolution = array_map('trim', array_map('htmlentities', $userSolution));
+            $userSolutionString = implode('', $userSolution);
 
+            $challengeManager = new ChallengeManager();
+            $correctAnswer = $challengeManager->selectChallengeAnswer($id);
+            $challenge = $challengeManager->selectOneById($id);
 
-                $challengeManager = new ChallengeManager();
-                $correctAnswer = $challengeManager->selectChallengeAnswer($id);
-                var_dump($correctAnswer['answer']);
-
-                if ($userSolutionString === $correctAnswer['answer']) {
-                    var_dump('you win');
-                }
+            if (isset($_POST['userSolution']) && (count($_POST['userSolution']) === count($correctAnswer))) {
+                $isCorrect = $userSolutionString === $correctAnswer['answer'];
+                return $this->twig->render('Challenges/validate.html.twig', [
+                    'isCorrect' => $isCorrect,
+                    'challenge' => $challenge
+                ]);
             } else {
-                throw new Exception('Parameter missing in POST request');
+                throw new Exception('Too few arguments');
             }
-        } else {
-            throw new Exception('Invalid request method');
         }
     }
 }
