@@ -20,7 +20,6 @@ class ChallengeManager extends AbstractManager
      */
     public function selectChallengeType(int $id): array|false
     {
-        // prepared request
         $statement = $this->pdo->prepare("SELECT type FROM " . static::TABLE . " WHERE id=:id");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -35,4 +34,14 @@ class ChallengeManager extends AbstractManager
         }
         return $this->assets;
     }
+
+    public function selectChallengeAnswer(int $id): array|false
+    {
+        $statement = $this->pdo->prepare("SELECT answer FROM " . static::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();  
+    }
+   
 }

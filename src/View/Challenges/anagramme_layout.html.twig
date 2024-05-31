@@ -10,7 +10,9 @@
    <img src='{{ image }}' alt='list of paintings'>
 {% endfor %}
 <p>{{ instructions }}</p>
-<form method='post' action="">
-<input type="text"></input>
+<form method='post' action="/challenges/validation" id='validation'>
+   <input type="hidden" name="id" value="{{ id }}">
+   <input type="text" name='user_answer'></input>
+   <button id='validation'>Valider</button>
 </form>
 {% endblock %}

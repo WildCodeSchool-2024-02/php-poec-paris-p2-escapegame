@@ -9,4 +9,5 @@
 return [
     'challenges/show' => ['ChallengeController', 'show', ['id']],
     'challenges/type' => ['ChallengeController', 'displayChallengeLayout', ['id']],
+    'challenges/validation' => ['ChallengeController', 'verifyChallengeAnswer'],
 ];
