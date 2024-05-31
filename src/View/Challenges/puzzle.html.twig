@@ -1,6 +1,47 @@
 {% extends 'layout.html.twig' %} {% block stylesheet %}
 <link rel="stylesheet" href="/assets/css/puzzle.css" />
-{% endblock %} {% block content %} {% block javascript %}
+{% endblock %} {% block content %} 
+<div class="card__outer">
+    <h2>{{ challenge.name }}</h2>
+    <div class="card__inner">
+        <div class="card__content">
+            <p>{{ challenge.instructions }}</p>
+            <form class="puzzle" method="post">
+                <div class="puzzle__container">
+                    {% set images = ['1.png', '2.png', '3.png', '4.png',
+                    '5.png', '6.png'] %} {% for image in images %} 
+                    <img
+                        src="/assets/images/challenges/2/{{ image }}"
+                        alt="Image {{ loop.index }}"
+                        id="img{{ loop.index }}"
+                        draggable="true"
+                        ondragstart="drag(event)"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    />
+                    {% endfor %}
+                </div>
+
+                <div class="puzzle__solution-container">
+                    {% for image in images %}
+                    <div
+                        draggable="true"
+                        class="puzzle__solution-container__block"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    />
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="button__container">
+                    <button type="clue" id="clue">Indice</button>
+                    <button type="submit" id="validate">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% block javascript %}
 <script>
     function allowDrop(ev) {
         ev.preventDefault();
@@ -15,45 +56,21 @@
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
     }
+
+    document.getElementById("validate").addEventListener("click", function() {
+            const puzzleContainer = document.getElementById("puzzleContainer");
+            const imagesOrder = Array.from(puzzleContainer.children).map(img => img.id);
+        console.log("imagesOrder", imagesOrder)
+            // Create a hidden input field to store the image order
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'imageOrder';
+            input.value = JSON.stringify(imagesOrder);
+
+            // Append the input field to the form
+            document.querySelector('form').appendChild(input);
+        });
 </script>
 {% endblock %}
-<div class="card__outer">
-    <h2>{{ challenge.name }}</h2>
-    <div class="card__inner">
-        <div class="card__content">
-            <p>{{ challenge.instructions }}</p>
-            <div class="puzzle">
-                <div class="puzzle__container">
-                    {% for image in images %}
-                    <img
-                        src="{{ image }}"
-                        alt="Image
-        {{ loop.index }}"
-                        id="img{{ loop.index }}"
-                        draggable="true"
-                        ondragstart="drag(event)"
-                        ondrop="drop(event)"
-                        ondragover="allowDrop(event)"
-                    />
-                    {% endfor %}
-                </div>
-                <div class="puzzle__solution-container">
-                    {% for image in images %}
-                    <div
-                        draggable="true"
-                        class="puzzle__solution-container__block"
-                        ondrop="drop(event)"
-                        ondragover="allowDrop(event)"
-                    ></div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="button__container">
-        <button id="clue">Indice</button>
-        <button id="validate">Valider</button>
-    </div>
-</div>
 
 {% endblock %}

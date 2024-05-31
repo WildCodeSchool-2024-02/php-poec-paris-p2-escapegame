@@ -36,12 +36,6 @@ h2 {
     
 }
 
-
-.button__container {
-    align-self: flex-end;
-    padding: 2rem;
-}
-
 button {
     height: 4rem;
     width: 8rem;

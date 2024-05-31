@@ -11,40 +11,29 @@ class ChallengeController extends AbstractController
     /**
      * Show informations for a specific challenge
      */
-    public function show(int $id): array
+
+    public function show(int $id): string
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
 
-        return $challenge;
+        return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig', [
+            'challenge' => $challenge,
+        ]);
     }
 
-    public function getChallengeType(int $id): array|string
+    public function validate(int $id): void
     {
-        $challengeManager = new ChallengeManager();
-        $challenge = $challengeManager->selectChallengeType($id);
-        if (empty($challenge)) {
-            echo $this->twig->render('Error/error.html.twig');
-            die();
-        }
-        return $challenge;
-    }
+        if (isset($_POST['imageOrder'])) {
+            $imageOrder = json_decode($_POST['imageOrder'], true);
+            var_dump($imageOrder);
 
-    public function displayChallengeLayout(int $id): string
-    {
-        $challengeManager = new ChallengeManager();
-        $challengeType = $this->getChallengeType($id);
-        $challenge = $this->show($id);
+            $challengeManager = new ChallengeManager();
+            $challenge = $challengeManager->selectOneById($id);
 
-        if ($challengeType['type'] === 'puzzle') {
-            $images = $challengeManager->setAssets(1, 3);
-            return $this->twig->render('Challenges/puzzle.html.twig', [
-                'challengeType' => $challengeType,
-                'images' => $images,
-                'challenge' => $challenge
-            ]);
-        } else {
-            return $this->twig->render('Home/index.html.twig', ['challengeType' => $challengeType]);
+            if ($imageOrder === $challenge['answer']) {
+                header('https://odyssey.wildcodeschool.com/agenda');
+            }
         }
     }
 }

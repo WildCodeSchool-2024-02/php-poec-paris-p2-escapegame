@@ -35,6 +35,7 @@ CREATE TABLE `challenge` (
   `instructions` text,
   `answer` varchar(255) NOT NULL,
   `clue` varchar(255) DEFAULT NULL,
+  `next_challenge` int,
   `room_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
