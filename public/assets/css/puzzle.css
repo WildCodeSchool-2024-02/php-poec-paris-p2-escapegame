@@ -18,27 +18,27 @@ p {
     max-width: 75%;
 }
 
-#img1 {
+#1 {
     grid-area: 1 / 1 / 2 / 2;
     box-shadow: 1px 1px 1px #000000;
 }
-#img2 {
+#2 {
     grid-area: 1 / 2 / 2 / 3;
     box-shadow: 1px 1px 1px #000000;
 }
-#img3 {
+#3 {
     grid-area: 1 / 3 / 2 / 4;
     box-shadow: 1px 1px 1px #000000;
 }
-#img4 {
+#4 {
     grid-area: 2 / 1 / 3 / 2;
     box-shadow: 1px 1px 1px #000000;
 }
-#img5 {
+#5 {
     grid-area: 2 / 2 / 3 / 3;
     box-shadow: 1px 1px 1px #000000;
 }
-#img6 {
+#6 {
     grid-area: 2 / 3 / 3 / 4;
     box-shadow: 1px 1px 1px #000000;
 }

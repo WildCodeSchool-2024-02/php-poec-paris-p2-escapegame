@@ -1,19 +1,23 @@
 {% extends 'layout.html.twig' %} {% block stylesheet %}
 <link rel="stylesheet" href="/assets/css/puzzle.css" />
-{% endblock %} {% block content %} 
+{% endblock %} {% block content %}
 <div class="card__outer">
     <h2>{{ challenge.name }}</h2>
     <div class="card__inner">
         <div class="card__content">
             <p>{{ challenge.instructions }}</p>
-            <form class="puzzle" method="post">
+            <form
+                class="puzzle"
+                method="post"
+                action="validation/?id={{ challenge.id }}"
+            >
                 <div class="puzzle__container">
                     {% set images = ['1.png', '2.png', '3.png', '4.png',
-                    '5.png', '6.png'] %} {% for image in images %} 
+                    '5.png', '6.png'] %} {% for image in images %}
                     <img
                         src="/assets/images/challenges/2/{{ image }}"
                         alt="Image {{ loop.index }}"
-                        id="img{{ loop.index }}"
+                        id="{{ loop.index }}"
                         draggable="true"
                         ondragstart="drag(event)"
                         ondrop="drop(event)"
@@ -23,16 +27,16 @@
                 </div>
 
                 <div class="puzzle__solution-container">
-                    {% for image in images %}
+                    {% for index in range(1, images|length) %}
                     <div
+                        id="box{{ index }}"
                         draggable="true"
                         class="puzzle__solution-container__block"
                         ondrop="drop(event)"
                         ondragover="allowDrop(event)"
                     />
-                    </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
                 <div class="button__container">
                     <button type="clue" id="clue">Indice</button>
                     <button type="submit" id="validate">Valider</button>
@@ -47,30 +51,34 @@
         ev.preventDefault();
     }
 
+    let imgId = "";
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+        imgId = ev.target.id;
+        return imgId;
     }
 
+    const userSolution = [];
     function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+        const boxId = ev.target.id;
+        const boxIndex = parseInt(boxId.replace("box", "")) - 1; // Get box index (0-based)
+        ev.target.appendChild(document.getElementById(imgId));
+        while (userSolution.length < boxIndex + 1) {
+            userSolution.push(null);
+        }
+        userSolution[boxIndex] = imgId;
+        while (userSolution[userSolution.length - 1] === null) {
+            userSolution.pop();
+        }
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "userSolution";
+        input.value = JSON.stringify(userSolution);
+        document.querySelector("form.puzzle").appendChild(input);
+        
+        console.log(userSolution);
     }
-
-    document.getElementById("validate").addEventListener("click", function() {
-            const puzzleContainer = document.getElementById("puzzleContainer");
-            const imagesOrder = Array.from(puzzleContainer.children).map(img => img.id);
-        console.log("imagesOrder", imagesOrder)
-            // Create a hidden input field to store the image order
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'imageOrder';
-            input.value = JSON.stringify(imagesOrder);
-
-            // Append the input field to the form
-            document.querySelector('form').appendChild(input);
-        });
 </script>
-{% endblock %}
-
-{% endblock %}
+{% endblock %} {% endblock %}
