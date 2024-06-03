@@ -7,7 +7,6 @@ use App\Model\AbstractManager;
 class ChallengeManager extends AbstractManager
 {
     public const TABLE = 'challenge';
-    public array $assets;
 
     public function __construct()
     {
