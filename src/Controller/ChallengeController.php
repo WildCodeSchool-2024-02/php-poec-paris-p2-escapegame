@@ -15,7 +15,6 @@ class ChallengeController extends AbstractController
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
-        $challenge = $challengeManager->selectOneById($id);
         $name = $challenge['name'];
         $instructions = $challenge['instructions'];
         $challengeType = $challenge['type'];
@@ -28,17 +27,6 @@ class ChallengeController extends AbstractController
         ]);
     }
 
-    public function getChallengeType(int $id): array|string
-    {
-        $challengeManager = new ChallengeManager();
-        $challenge = $challengeManager->selectChallengeType($id);
-        if (empty($challenge)) {
-            echo $this->twig->render('Error/error.html.twig');
-            die();
-        }
-        return $challenge;
-    }
-
     public function validate()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,11 +35,10 @@ class ChallengeController extends AbstractController
                 $userAnswer = array_map('trim', array_map('htmlentities', $_POST));
 
                 $challengeManager = new ChallengeManager();
-                $correctAnswer = $challengeManager->selectChallengeAnswer($id);
+                $correctAnswer = $challengeManager->selectOneById($id);
 
                 if ($userAnswer['user_answer'] === $correctAnswer['answer']) {
-                    header('Location: https://odyssey.wildcodeschool.com/');
-                    exit;
+                    return 'true';
                 } else {
                     return 'false';
                 }
