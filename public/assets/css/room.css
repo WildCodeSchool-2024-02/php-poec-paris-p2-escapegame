@@ -30,7 +30,6 @@ div {
 }
 
 .lobby-zoom {
-    border: 1px solid green;
     position: absolute;
     z-index: 4;
     height: 15vh;
@@ -40,7 +39,6 @@ div {
 }
 
 .lobby-to-challenge {
-    border: 1px solid red;
     position: absolute;
     z-index: 3;
     height: 35vh;
@@ -49,7 +47,6 @@ div {
 }
 
 .gallery-zoom {
-    border: 1px solid green;
     position: absolute;
     z-index: 4;
     height: 13vh;
@@ -59,7 +56,6 @@ div {
 }
 
 .gallery-to-challenge {
-    border: 1px solid red;
     position: absolute;
     z-index: 3;
     height: 30vh;
@@ -69,7 +65,6 @@ div {
 }
 
 .exhibition-zoom {
-    border: 1px solid green;
     position: absolute;
     z-index: 4;
     height: 20vh;
@@ -79,7 +74,6 @@ div {
 }
 
 .exhibition-to-challenge {
-    border: 1px solid red;
     position: absolute;
     z-index: 3;
     height: 50vh;
