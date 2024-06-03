@@ -6,21 +6,24 @@ use App\Model\RoomManager;
 
 class RoomController extends AbstractController
 {
-    public function getChallengeDescription($challengeId): array
+    public function getChallenge($challengeId): array
     {
         $roomManager = new RoomManager();
-        $challenge = $roomManager->getChallengeDescription($challengeId);
+        $challenge = $roomManager->getChallenge($challengeId);
         return $challenge;
     }
 
-    public function show(int $id): string
+    public function show($roomId, $challengeId): string
     {
+        // $roomId = (int) $roomId;
+        // $challengeId = (int) $challengeId;
+
         $roomManager = new RoomManager();
-        $room = $roomManager->selectOneById($id);
+        $room = $roomManager->selectOneById($roomId);
 
-        $challenge = $this->getChallengeDescription(2);
+        $challenge = $this->getChallenge($challengeId);
 
-        return $this->twig->render('Rooms/' . $room['name'] . '.html.twig', [
+        return $this->twig->render('Rooms/room.html.twig', [
             'room' => $room,
             'challenge' => $challenge,
         ]);

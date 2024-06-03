@@ -16,9 +16,9 @@ class RoomManager extends AbstractManager
         return $statement->fetch();
     }
 
-    public function getChallengeDescription(int $challengeId)
+    public function getChallenge(int $challengeId)
     {
-        $statement = $this->pdo->prepare("SELECT description FROM challenge WHERE id=:id");
+        $statement = $this->pdo->prepare("SELECT * FROM challenge WHERE id=:id");
         $statement->bindValue('id', $challengeId, \PDO::PARAM_INT);
         $statement->execute();
 
