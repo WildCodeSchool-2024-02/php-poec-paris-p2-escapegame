@@ -37,7 +37,7 @@ class ChallengeController extends AbstractController
             $correctAnswer = $challengeManager->selectChallengeAnswer($id);
             $challenge = $challengeManager->selectOneById($id);
 
-            if (isset($_POST['userSolution']) && (count($_POST['userSolution']) === count($correctAnswer))) {
+            if (strlen($userSolutionString) === strlen($correctAnswer['answer'])) {
                 $isCorrect = $userSolutionString === $correctAnswer['answer'];
                 return $this->twig->render('Challenges/validate.html.twig', [
                     'isCorrect' => $isCorrect,
