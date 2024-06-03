@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %} {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/lobby.css" />
+{% endblock %} {% block content %}
+<form method="post" action="challenges/type">
+    <img src="/assets/images/{{ room.name }}.png" id="zoom-image" />
+    <div id="desk-zone"></div>
+    <div id="desktop-zone"></div>
+    <p id="description">{{ challenge.description }}</p>
+    <button type="submit" id="button" disabled></button>
+</form>
+{% endblock %} {% block javascript %}
+<script>
+let clicks = 0;
+
+    function showText() {
+        let textElement = document.getElementById("description");
+        if (!textElement.classList.contains("visible")) {
+            textElement.classList.add("visible");
+        }
+    }
+
+    function activateFormButton() {
+        let formButton = document.getElementById("button");
+        formButton.disabled = false;
+        console.log("next page");
+    }
+
+    let deskZone = document.getElementById("desk-zone");
+    let desktopZone = document.getElementById("desktop-zone");
+    deskZone.addEventListener("click", function () {
+        let imgElement = document.getElementById("zoom-image");
+        if (!imgElement.classList.contains("zoomed")) {
+            imgElement.classList.add("zoomed");
+            showText();
+            clicks++;
+            deskZone.style.visibility = "hidden";
+        }
+    });
+
+   
+    desktopZone.addEventListener("click", function () {
+        if (clicks >= 1) {
+            activateFormButton();
+        }
+    });
+</script>
+{% endblock %}
