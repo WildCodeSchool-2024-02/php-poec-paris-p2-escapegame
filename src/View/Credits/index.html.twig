@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %} {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/credits.css" />
+{% endblock %} {% block content %}
+<div class="credits">
+    <span>
+        <span
+            ><h2><span>La Nuit</span>&nbsp;&nbsp;DU CONSERVATEUR</h2></span
+        >
+        <span>
+            <p>Félicitations et merci pour votre participation !</p>
+
+            <p>
+                Nous tenons à vous remercier chaleureusement pour votre aide
+                précieuse dans la résolution de ce mystère. Grâce à vous, le
+                Collier de perles de Marie Antoinette a été retrouvé, et
+                l'exposition de Monsieur Daley peut ouvrir comme prévu. En signe
+                de notre gratitude, nous sommes ravis de vous offrir une
+                réduction de 10% valable pendant un an sur toute notre boutique
+                du Louvre. Merci encore pour votre dévouement et votre passion
+                pour l'art et l'histoire. Nous espérons vous revoir bientôt au
+                musée ou en ligne !
+            </p>
+
+            <p>Avec nos sincères remerciements,</p>
+
+            <p>L'équipe du Musée du Louvre</p>
+        </span>
+    </span>
+    <span>
+        {% for category, persons in credits %}
+        <span>
+            <h3>{{ category|capitalize|replace({'_': ' '}) }}</h3>
+            <ul>
+                {% for person in persons %}
+                <li>{{ person.firstname }} {{ person.lastname }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </span>
+    </span>
+</div>
+{% endblock %}

@@ -13,5 +13,6 @@ return [
     'challenges' => ['ChallengeController', 'get', ['id']],
     'challenges/type' => ['ChallengeController', 'show', ['id']],
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],
+    'credits' => ['CreditsController', 'index',],
     'home' => ['HomeController', 'index'],
 ];

@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+}
+
+.credits {
+    display: flex;
+    flex-direction: row;
+    background-image: url("../images/credits.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    color: #ffffff;
+}
+
+div > span {
+    padding-top: 4.5rem;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4.5rem;
+    padding-left: 4.5rem;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+}
+
+h2 {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h2 > span {
+    font-family: "Luxurious Script", cursive;
+    font-size: 4rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+span > p {
+    margin-bottom: 1rem;
+    font-family: "Inria Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h3 {
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+ul,
+ul > li {
+    list-style-type: none;
+    padding: 0;
+    line-height: 1.5rem;
+}
+
+.credits > span:nth-child(2) {
+    flex-grow: 1;
+    text-align: center;
+    height: calc(100vh - 30%);
+    overflow-x: hidden;
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
