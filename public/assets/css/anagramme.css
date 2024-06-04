@@ -20,6 +20,9 @@ main {
     display: flex;
     flex-direction: column;
     border-radius: 5px ;
+    height: 80%;
+    width: 80%;
+    margin: auto;
 }
 
 section {
@@ -28,6 +31,8 @@ section {
     display: flex;
     flex-direction: row;
     border-radius: 5px ;
+    height: 80%;
+    width: 80%;
 }
 
 ol {
