@@ -6,23 +6,38 @@
 
 {% block content %}
 <main>
-	<h1><span class='handwritten'>Challenge {{ name }}</span></h1>
+	<h1><span class='handwritten'>{{ name }}</span></h1>
    <section>
       <div>
-         {% include 'Assets/challenge_id_' ~ id ~'.html.twig' %}
+         {% include 'Assets/text_id_' ~ id ~'.html.twig' %}
       </div>
       <article>
          <p>{{ instructions }}</p>
+         {% include 'Assets/wordplay_id_' ~ id ~'.html.twig' %}
          <form method='post' action="/challenges/validation" id='validation'>
-            <input type="hidden" name="id" value="{{ id }}">
+            <input type="hidden" value="{{ id }}">
             <input type="text" name='user_answer'></input>
          </form>
+         <p><i id='indice' class='hidden'>{{ clue }}</i></p>
       </article>
    </section>
    <aside>
-      <button class='clue' type="button">Indice</button>
+      <button id ='clueButton' class='clue' type="button">Indice</button>
       <button class='validate' type="submit" form="validation">Valider</button>
    </aside>
    
 </main>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+       const button = document.getElementById('clueButton');
+       button.addEventListener('click', () => {
+           const clueElement = document.getElementById('indice');
+           clueElement.classList.toggle('hidden');
+           clueElement.classList.toggle('visible');
+       });
+   });
+</script>
 {% endblock %}
