@@ -15,4 +15,5 @@ return [
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],
     'credits' => ['CreditsController', 'index',],
     'home' => ['HomeController', 'index'],
+    'challenges/show' => ['ChallengeController', 'show'],
 ];

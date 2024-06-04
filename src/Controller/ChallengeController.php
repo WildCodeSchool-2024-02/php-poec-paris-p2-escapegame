@@ -45,8 +45,6 @@ class ChallengeController extends AbstractController
         ]);
     }
 
-
-
     public function validate(int $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
