@@ -24,4 +24,13 @@ main {
     border-radius: 50px;
     margin-bottom: 85px;
     font-size: 2rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }

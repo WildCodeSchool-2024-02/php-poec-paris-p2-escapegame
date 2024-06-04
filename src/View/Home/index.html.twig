@@ -1,6 +1,22 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+    La Nuit du Conservateur
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/style_menu.css">
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
+    <h1><a href=''><span class='handwritten'>La Nuit</span> du Conservateur</a></h1>
+    <ul>
+        <li><a>Continue</a></li>
+        <li><a href='/intro'>New Game</a></li>
+        <li><a href='https://www.louvre.fr/'>Louvre Website</a></li>
+    </ul>
+    <footer>
+        <a>Infos</a>
+        <a>2024</a>
+    </footer>
 {% endblock %}
