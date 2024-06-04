@@ -4,7 +4,7 @@
     <button type="submit">Prochain challenge</button>
 </form>
 {% else %}
-<form method="post" action="/challenges/type?id={{ challenge.id }}">
+<form method="post" action="/challenges/show?id={{ challenge.id }}">
     <h1>Perdu</h1>
     <button type="submit">Rejouer</button>
 </form>
