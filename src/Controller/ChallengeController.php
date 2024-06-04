@@ -15,7 +15,13 @@ class ChallengeController extends AbstractController
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
+        $name = $challenge['name'];
+        $clue = $challenge['clue'];
 
-        return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig');
+        return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig', [
+            'name' => $name,
+            'id' => $id,
+            'clue' => $clue
+        ]);
     }
 }
