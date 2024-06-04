@@ -11,7 +11,44 @@
                 method="post"
                 action="validation/?id={{ challenge.id }}"
             >
-                <div class="puzzle__container">
+                <div class="puzzle__container" id="puzzle-container">    
+                      {% if challenge.level is same as('easy') %}
+                        {% set images = [
+                            '1.png',
+                            '2.png',
+                            '3.png',
+                            '4.png',
+                            '5.png',
+                            '6.png'
+                        ] %}
+                      {% elseif challenge.level is same as('average') %}
+                        {% set images = [
+                            '1.png',
+                            '2.png',
+                            '3.png',
+                            '4.png',
+                            '5.png',
+                            '6.png',
+                            '7.png',
+                            '8.png',
+                            '9.png',
+                        ] %}
+                      {% elseif challenge.level is same as('hard') %}
+                      {% set images = [
+                            '1.png',
+                            '2.png',
+                            '3.png',
+                            '4.png',
+                            '5.png',
+                            '6.png',
+                            '7.png',
+                            '8.png',
+                            '9.png',
+                            '10.png',
+                            '11.png',
+                            '12.png'
+                        ] %}
+                      {% endif %}
                     {% for image in images %}
                     <div
                         class="puzzle_container_piece"
@@ -45,7 +82,7 @@
                         class="puzzle__solution-container__block"
                         ondrop="drop(event)"
                         ondragover="allowDrop(event)"
-                    />
+                    /><input name="userPuzzleSolution" type="hidden" id="user-solution"/>
                 </div>
                 {% endfor %}
                 </div>
@@ -70,58 +107,56 @@
 </div>
 {% endblock %} {% block javascript %}
 <script>
+
+    const input = document.getElementById('user-solution');
+    const button = document.getElementById("validate");
+    const puzzle = document.querySelector("form.puzzle");
+    const container = document.getElementById("puzzle-container"); 
+    let imgId = "";
+    const userSolution = [];
+
+    (function() {
+  
+        const elementsArray = Array.from(container.children);
+        for (let i = elementsArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [elementsArray[i], elementsArray[j]] = [elementsArray[j], elementsArray[i]];
+        }
+        container.innerHTML = '';
+        elementsArray.forEach(element => container.appendChild(element));
+    })();
+        
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
-    let imgId = "";
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
         imgId = ev.target.id;
         return imgId;
     }
-
-    const userSolution = [];
+   
     function drop(ev) {
         ev.preventDefault();
 
-        if (ev.target.tagName === "IMG" || ev.target.querySelector("img")) {
-            return;
-        }
         const data = ev.dataTransfer.getData("text");
         const boxId = ev.target.id;
         const boxIndex = parseInt(boxId.replace("box", "")) - 1;
         ev.target.appendChild(document.getElementById(imgId));
-        while (userSolution.length < boxIndex + 1) {
-            userSolution.push(null);
-        }
         userSolution[boxIndex] = imgId;
         while (userSolution[userSolution.length - 1] === null) {
             userSolution.pop();
         }
-        console.log(userSolution)
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "userSolution";
         input.value = JSON.stringify(userSolution);
-        document.querySelector("form.puzzle").appendChild(input);
-        checkArrayAndUpdateButton(userSolution);
+        puzzle.appendChild(input);
+        activateValidateButton(userSolution);
     }
 
-    function checkArrayAndUpdateButton(arr) {
-        const button = document.getElementById("validate");
-        const containsNull = userSolution.some((element) => element === null);
-        if (!containsNull) {
+    function activateValidateButton(arr) {
+        if (!userSolution.some((element) => element === null)) {
             button.disabled = false;
         } else {
             button.disabled = true;
-        }
-        checkArrayAndUpdateButton(userSolution);
-
-        function updateArrayAndCheck(newElement, index) {
-            userSolution[index] = newElement;
-            checkArrayAndUpdateButton(userSolution);
-            console.log(userSolution)
         }
     }
 </script>

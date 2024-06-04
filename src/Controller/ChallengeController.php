@@ -4,71 +4,72 @@ namespace App\Controller;
 
 use Exception;
 use App\Model\ChallengeManager;
-use RangeException;
+use App\Controller\SaveController;
 
 class ChallengeController extends AbstractController
 {
-    public $images = [
-        '1.png',
-        '2.png',
-        '3.png',
-        '4.png',
-        '5.png',
-        '6.png',
-        '7.png',
-        '8.png',
-        '9.png'
-    ];
+    public $userSolutionString = "";
 
-    public function shuffleImages()
+    /**
+     * Show save user challenge progress
+     */
+    public function saveProgress(int $userId, int $challengeId): void
     {
-        $shuffledImages = $this->images;
-        shuffle($shuffledImages);
-        return $shuffledImages;
+        $saveController = new SaveController();
+        $saveController->saveProgress($userId, $challengeId);
     }
 
-    public array $data;
     /**
      * Show informations for a specific challenge
      */
-
     public function show(int $id): string
     {
 
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
 
-
         return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig', [
             'challenge' => $challenge,
-            'images' => $this->shuffleImages(),
         ]);
     }
 
+    /**
+     * Clean json array received for puzzle challenge
+     */
+    public function prepareUserSolution($userSolution)
+    {
+        $jsonString = $userSolution;
+        $userSolution = json_decode($jsonString, true);
+        $userSolution = array_map(function ($userSolution) {
+            return preg_replace('/\.png$/', '', $userSolution);
+        }, $userSolution);
+        $userSolution = array_map('trim', array_map('htmlentities', $userSolution));
+        $userSolutionString = implode('', $userSolution);
+        return $userSolutionString;
+    }
+
+    /**
+     * Validate the array, calls saveProgress and if necessary prepareUserSolution
+     */
     public function validate(int $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $jsonString = $_POST['userSolution'];
-            $userSolution = json_decode($jsonString, true);
-            $userSolution = array_map(function ($filename) {
-                return preg_replace('/\.png$/', '', $filename);
-            }, $userSolution);
-            $userSolution = array_map('trim', array_map('htmlentities', $userSolution));
-            $userSolutionString = implode('', $userSolution);
-
-            $challengeManager = new ChallengeManager();
-            $correctAnswer = $challengeManager->selectChallengeAnswer($id);
-            $challenge = $challengeManager->selectOneById($id);
-
-            if (strlen($userSolutionString) === strlen($correctAnswer['answer'])) {
-                $isCorrect = $userSolutionString === $correctAnswer['answer'];
-                return $this->twig->render('Challenges/validate.html.twig', [
-                    'isCorrect' => $isCorrect,
-                    'challenge' => $challenge
-                ]);
-            } else {
-                throw new Exception('Too few arguments');
+            if (isset($_POST['userPuzzleSolution'])) {
+                $this->userSolutionString = $this->prepareUserSolution($_POST['userPuzzleSolution']);
             }
+            // add other challenge submissions
+            $challengeManager = new ChallengeManager();
+            $challenge = $challengeManager->selectOneById($id);
+            $isCorrect = $this->userSolutionString === $challenge['answer'];
+            // TODO routing to receive $userId
+            if ($this->userSolutionString === $challenge['answer']) {
+                $this->saveProgress(3, $challenge['id']);
+            }
+
+            return $this->twig->render('Challenges/validate.html.twig', [
+                'isCorrect' => $isCorrect,
+                'challenge' => $challenge
+            ]);
         }
     }
 }
