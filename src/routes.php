@@ -10,4 +10,5 @@ return [
     '' => ['HomeController', 'index',],
     'challenges/show' => ['ChallengeController', 'show'],
     'credits' => ['CreditsController', 'index',],
+    'login' => ['UserController', 'registerNewUser'],
 ];

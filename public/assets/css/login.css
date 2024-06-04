@@ -1,0 +1,67 @@
+.login {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    height: 100vh;
+
+}
+
+aside {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    line-height: 2rem;
+    background-color: #1A1A1A;
+    color: #ffffff;
+    padding: 4rem;
+}
+
+
+form {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.2rem;
+    min-height: 400px;
+    padding: 1.5rem;
+    background-color: #141E30;
+    border-radius: 20px;
+    color: #ffffff;
+}
+
+h4 {
+    align-self: center;
+    text-decoration: underline;
+}
+
+input {
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #243B55;
+    color: #ffffff;
+}
+
+button {
+    align-self: center;
+    margin-top: 0.8rem;
+    background-color: #F4B659;
+    border-radius: 40px;
+    padding: 1rem;
+}
+
+button:hover {
+    font-size: 1rem;
+    background-color: goldenrod;
+    padding: 1.2rem;
+    transition: 0.5s;
+}
+
+button:active {
+    font-size: 1rem;
+    background-color: gold;
+    padding: 1.5rem;
+    transition: 0.5s;
+}
