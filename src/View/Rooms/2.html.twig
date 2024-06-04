@@ -6,14 +6,17 @@
 {% endblock %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/rooms/{{ id }}.css">
+<link rel="stylesheet" href="/assets/css/rooms/room.css">
 {% endblock %}
 
 {% block content %}
 <main>
-    <p>À mesure que le puzzle se résout sous mes doigts, le tableau lui-même  semble se métamorphoser, révélant un passage secret dissimulé derrière  lui. Un frisson d'excitation parcourt mes veines à la perspective de  l'inconnu qui se dévoile. Sans hésiter, je m'empresse de m’y engouffrer</p>
+    <button id='myButton'>?</button>
+    <p id='redirection' class='hidden'>À mesure que le puzzle se résout sous mes doigts, le tableau lui-même  semble se métamorphoser, révélant un passage secret dissimulé derrière  lui. Un frisson d'excitation parcourt mes veines à la perspective de  l'inconnu qui se dévoile. Sans hésiter, je m'empresse de m’y engouffrer</p>
 </main>
-<aside>
-    <p>?</p>
-</aside>
+{% endblock %}
+
+{% block javascript %}
+<script> var dynamicId = {{ id }};</script>
+<script src="assets/js/room.js"></script>
 {% endblock %}
