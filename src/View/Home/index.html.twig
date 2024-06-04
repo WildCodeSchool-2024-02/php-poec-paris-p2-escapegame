@@ -1,5 +1,22 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+    La Nuit du Conservateur
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/menu.css">
+{% endblock %}
+
 {% block content %}
-    <h1>Type de challenge {{ challengeType.type }}</h1>
+    <h1><span class='handwritten'>La Nuit</span> du Conservateur</h1>
+    <ul>
+        <li><a>Continue</a></li>
+        <li><a>New Game</a></li>
+        <li><a>Louvre Website</a></li>
+    </ul>
+    <footer>
+        <a>Infos</a>
+        <a>2024</a>
+    </footer>
 {% endblock %}

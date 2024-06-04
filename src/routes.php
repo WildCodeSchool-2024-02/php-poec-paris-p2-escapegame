@@ -11,9 +11,8 @@ use App\Controller\HomeController;
 
 return [
     'challenges' => ['ChallengeController', 'get', ['id']],
-    'challenges/type' => ['ChallengeController', 'show', ['id']],
+    'challenges/show' => ['ChallengeController', 'show', ['id']],
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],
     'credits' => ['CreditsController', 'index',],
     'home' => ['HomeController', 'index'],
-    'challenges/show' => ['ChallengeController', 'show'],
 ];

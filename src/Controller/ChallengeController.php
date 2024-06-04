@@ -12,7 +12,7 @@ class ChallengeController extends AbstractController
      * Show informations for a specific challenge
      */
 
-    public function get(int $id): string
+    public function show(int $id): string
     {
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
