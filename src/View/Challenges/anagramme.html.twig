@@ -6,9 +6,11 @@
 
 {% block content %}
 <main>
-	<h1>{{ name }}</h1>
+	<h1><span class='handwritten'>Challenge {{ name }}</span></h1>
    <section>
-      {% include 'Assets/challenge_id_' ~ id ~'.html.twig' %}
+      <div>
+         {% include 'Assets/challenge_id_' ~ id ~'.html.twig' %}
+      </div>
       <article>
          <p>{{ instructions }}</p>
          <form method='post' action="/challenges/validation" id='validation'>
