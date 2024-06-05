@@ -1,11 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Challenge type = Puzzle</h1>
-</body>
-</html>
+{% extends 'layout.html.twig' %} {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/puzzle.css" />
+{% endblock %} {% block content %}
+<div class="card__outer">
+    <h2>{{ challenge.name }}</h2>
+    <div class="card__inner">
+        <div class="card__content">
+            <p>{{ challenge.instructions }}</p>
+            <form
+                class="puzzle"
+                method="post"
+                action="validation/?id={{ challenge.id }}"
+            >
+                <div class="puzzle__container" id="puzzle-container">    
+                      {% set max_index = 0 %}
+                      {% if challenge.level is same as('hard') %}
+                          {% set max_index = 12 %}
+                      {% elseif challenge.level is same as('average') %}
+                          {% set max_index = 9 %}
+                      {% elseif challenge.level is same as('easy') %}
+                          {% set max_index = 6 %}
+                      {% endif %}
+                      
+                      {% for index in range(1, max_index) %}           
+                    <div
+                        class="puzzle_container_piece"
+                        alt="Image {{ index }}"
+                        id="{{ index }}"
+                        draggable="true"
+                        ondragstart="drag(event)"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    >
+                        <img
+                            src="/assets/images/challenges/{{ challenge.id }}/{{
+                                index
+                            }}.png"
+                            alt="Image {{ index }}"
+                            id="{{ index }}"
+                            draggable="true"
+                            ondragstart="drag(event)"
+                            ondrop="drop(event)"
+                            ondragover="allowDrop(event)"
+                        />
+                    </div>
+                    {% endfor %}
+                </div>
+              
+                <div class="puzzle__solution-container">
+                    {% for index in range(1, max_index) %}
+                    <div
+                        id="box{{ index }}"
+                        draggable="true"
+                        class="puzzle__solution-container__block"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    /><input name="user_answer" type="hidden" id="user_answer"/>
+                </div>
+                {% endfor %}
+                </div>
+                <div class="puzzle__side-container">
+                    {% for index in range(1, 3) %}
+                    <div
+                        class="puzzle__side"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    /></div>
+                    {% endfor %}
+                </div>
+                </div>
+                <div class="button__container">
+                    <button type="clue" id="clue">Indice</button>
+                    <button type="submit" id="validate" disabled>
+                        Valider
+                    </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block javascript %}
+<script>
+    
+    let imgId = "";
+    const userSolution = [];
+
+    const input = document.getElementById('user_answer');
+    const button = document.getElementById("validate");
+    const puzzle = document.querySelector("form.puzzle");
+    const container = document.getElementById("puzzle-container"); 
+    const images = Array.from(container.children);
+
+    (function() {
+        for (let i = images.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [images[i], images[j]] = [images[j], images[i]];
+        }
+        container.innerHTML = '';
+        images.forEach(element => container.appendChild(element));
+    })();
+        
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        imgId = ev.target.id;
+        return imgId;
+    }
+   
+    function drop(ev) {
+        ev.preventDefault();
+
+        const data = ev.dataTransfer.getData("text");
+        const boxId = ev.target.id;
+        const boxIndex = parseInt(boxId.replace("box", "")) - 1;
+        ev.target.appendChild(document.getElementById(imgId));
+        userSolution[boxIndex] = imgId;
+        while (userSolution[userSolution.length - 1] === null) {
+            userSolution.pop();
+        }
+        input.value = userSolution.map(item => item.replace('.png', '')).join('');
+        puzzle.appendChild(input);
+
+        button.disabled = input.value.length !== images.length;
+    }
+</script>
+ {% endblock %}
