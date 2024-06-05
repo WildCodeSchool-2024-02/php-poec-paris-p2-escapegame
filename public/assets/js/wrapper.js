@@ -11,6 +11,7 @@ if ( url === '/intro') {
         }
     }
 } else if ( url === '/outro') {
+    body.classList.add('outro');
     var links = document.getElementById("text");
     links.onclick = function() {
         window.location = "http://localhost:8000/credits";
