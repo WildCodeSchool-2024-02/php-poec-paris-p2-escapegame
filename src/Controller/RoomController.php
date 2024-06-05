@@ -17,7 +17,7 @@ class RoomController extends AbstractController
 
         return $this->twig->render('Rooms/room.html.twig', [
             'room' => $room,
-            'challenge' => $currentChallenge,
+            'currentChallenge' => $currentChallenge,
         ]);
     }
 }
