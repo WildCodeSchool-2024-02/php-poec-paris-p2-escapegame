@@ -1,22 +1,20 @@
-{% extends 'layout.html.twig' %}
-
-{% block title %}
-    La Nuit du Conservateur
-{% endblock %}
-
-{% block stylesheet %}
-    <link rel="stylesheet" href="/assets/css/menu.css">
-{% endblock %}
-
-{% block content %}
-    <h1><span class='handwritten'>La Nuit</span> du Conservateur</h1>
-    <ul>
-        <li><a>Continue</a></li>
-        <li><a>New Game</a></li>
-        <li><a>Louvre Website</a></li>
-    </ul>
-    <footer>
-        <a>Infos</a>
-        <a>2024</a>
-    </footer>
+{% extends 'layout.html.twig' %} {% block title %} La Nuit du Conservateur {%
+endblock %} {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/menu.css" />
+{% endblock %} {% block content %}
+<h1><span class="handwritten">La Nuit</span> du Conservateur</h1>
+<ul>
+    <li><a href="/login">Se connecter</a></li>
+    <li><a href="/register">Créer un compte</a></li>
+    <li><a>Nouveau jeu</a></li>
+    <li>
+        <a href="https://www.louvre.fr/en" target="_blank"
+            >Visiter le site du Louvre</a
+        >
+    </li>
+</ul>
+<footer>
+    <a>Infos</a>
+    <a>2024</a>
+</footer>
 {% endblock %}
