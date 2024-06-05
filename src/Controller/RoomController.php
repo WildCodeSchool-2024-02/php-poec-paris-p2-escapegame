@@ -13,11 +13,11 @@ class RoomController extends AbstractController
         $room = $roomManager->selectOneById($roomId);
 
         $challengeManager = new ChallengeManager();
-        $challenge = $challengeManager->selectOneById($challengeId);
+        $currentChallenge = $challengeManager->selectOneById($challengeId);
 
         return $this->twig->render('Rooms/room.html.twig', [
             'room' => $room,
-            'challenge' => $challenge,
+            'challenge' => $currentChallenge,
         ]);
     }
 }
