@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ChallengeManager;
-use App\Controller\UserController;
+use App\Model\SaveManager;
 
 class ChallengeController extends AbstractController
 {
@@ -20,7 +20,7 @@ class ChallengeController extends AbstractController
      */
     public function saveProgress(int $userId, int $challengeId): void
     {
-        $saveController = new UserController();
+        $saveController = new SaveManager();
         $saveController->saveProgress($userId, $challengeId);
     }
 
