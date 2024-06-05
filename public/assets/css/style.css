@@ -72,3 +72,9 @@ button#clue:hover {
 button#clue:active {
     background-color: #dedede;
 }
+
+.handwritten {
+    font-family: 'Mervale Script', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
