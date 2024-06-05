@@ -10,6 +10,7 @@ return [
     '' => ['HomeController', 'index',],
     'intro' => ['RoomController', 'showIntro',],
     'room' => ['RoomController', 'show', ['id']],
+    'challenges/show' => ['ChallengeController', 'show', ['id']],
     'outro' => ['RoomController', 'showOutro',],
     'credits' => ['CreditsController', 'index',],
 ];

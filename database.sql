@@ -1,71 +1,155 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Jeu 26 Octobre 2017 à 13:53
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
+-- Hôte : localhost
+-- Généré le : mer. 29 mai 2024 à 09:23
+-- Version du serveur : 8.0.36
+-- Version de PHP : 8.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE TABLE room (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  next INT 
-);
 
-INSERT INTO room (name, next)
-VALUES 
-  ('lobby','2'),
-  ('gallery','3'),
-  ('exhibition', null);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE challenge (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255),
-  description TEXT,
-  type VARCHAR(255) NOT NULL,
-  instructions TEXT,
-  answer VARCHAR(255) NOT NULL,
-  clue VARCHAR(255),
-  room_id INT,
-  FOREIGN KEY (room_id) REFERENCES room(room_id)
-);
+--
+-- Base de données : `escape_game`
+--
 
-CREATE TABLE user (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
+-- --------------------------------------------------------
 
-CREATE TABLE save (
-  user_id INT,
-  challenge_id INT,
-  created_at DATETIME,
-  PRIMARY KEY (user_id, challenge_id),
-  FOREIGN KEY (user_id) REFERENCES user(user_id),
-  FOREIGN KEY (challenge_id) REFERENCES challenge(challenge_id)
-);
+--
+-- Structure de la table `challenge`
+--
 
+CREATE TABLE `challenge` (
+  `id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `type` varchar(255) NOT NULL,
+  `instructions` text,
+  `answer` varchar(255) NOT NULL,
+  `clue` varchar(255) DEFAULT NULL,
+  `room_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO challenge ( type, description, instructions, answer, clue, room_id)
-VALUES 
-  ('anagramme', "Attends... quelque chose attire mon attention. Peut-être qu'une visite au bureau pourrait révéler plus que prévu.", "Attendez une minute... quelque chose me semble étrange. Dans ce  contexte, un rébus semble être la clé pour percer ce mystère.  Déchiffrez-le avec soin pour découvrir quel trésor il cache parmi les  œuvres d'art du Louvre. Votre succès dans cette épreuve pourrait bien  nous guider vers la prochaine étape de notre aventure. Bonne chance !",'coucou','Le Radeau de la Meduse', 1),
-  ('puzzle', "En examinant de près le bureau, mes yeux ont capté quelque chose  d'étrange. Des lambeaux de papier déchiré, cachés à gauche de la pièce. Quel mystère se dissimule-t-il dans ces fragments  oubliés ? ", "Votre mission est de replacer dans le bon ordre les  différentes parties de la carte du  Musée pour pouvoir vous repérer parmi les différents salles. 
-  Saurez-vous  relever le défi et reconstituer cette œuvre cartographique ? ", '651342','coucou', 1),
-  ('colors', "La carte suggère fortement de suivre vers la droite, en direction d'une porte que je croyais fermée. Cette révélation éveille une nouvelle curiosité. Peut-être que derrière cette porte se cache un autre mystère fascinant qui n'attend que d'être découvert", "Votre mission, si vous l'acceptez, est de percer les mystères des  cariatides du musée du Louvre et de découvrir le code couleur associé à  ces quatre statues.
-  Êtes-vous prêt à explorer les détails et à révéler les secrets cachés dans ces majestueuses statues ?", "RougeJauneBleuVert",'coucou', 1),
-  ('code', "Je pénètre dans la pièce tant attendue, et là, au milieu de l'atmosphère chargée d'histoire, je la découvre. Son regard énigmatique semble me capturer instantanément, m'invitant à m'approcher.", "Votre mission est de trouver les quatre chiffres cache à l'intérieur du tableau de la Joconde.
-  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise du sfumato ?", '7753','coucou', 2),
-  ('anagramme', "Au terme de mon observation de la Joconde, mes yeux se tournent vers un chandelier projettant une lumière éthérée sur une énigmatique inscription murale. Il est clair que cette piste pourrait mener à l’objet perdu.", "Votre mission est de résoudre l’anagramme en lien avec le texte sur la plus célèbres oeuvres du Musée du Louvre. 
-  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des lettres ?", "Leonardo Da Vinci",'coucou', 2),
-  ('puzzle', "Même après avoir triomphé du challenge précédent, je me trouve à nouveau confronté à l'incertitude. Malgré mes efforts, aucun chemin clair ne semble se dessiner vers la prochaine étape. Je réalise qu'il est peut-être temps de ralentir et d'observer attentivement les œuvres environnantes. Qui sait quel indice pourrait éclairer la voie vers la suite de cette aventure ?", "Votre mission est de replacer dans le bon ordre les différentes parties de la scène de La Liberté guidant le peuple afin de reconstituer cette œuvre emblématique. Saurez-vous relever ce défi artistique et ordonner les éléments pour redonner vie à cette fresque historique ?", '962514837','coucou', 2),
-  ('anagramme', "Mon périple à travers le passage secret me mène dans une pièce mystérieuse, baignée dans une ambiance glaciale qui fait frissonner mon échine. À première vue, des objets antiques éparpillés semblent conter des histoires oubliées depuis des siècles. Malgré cette atmosphère oppressante, je suis déterminé à poursuivre ma quête.", "Votre mission est de résoudre l’anagramme en lien avec le texte. 
-  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des lettres ?", "Scribe Accroupi",'coucou', 3),
-  ('code', "Après avoir minutieusement analysé le Scribe Accroupi, une impression étrange m'envahit lorsque la statue semble soudain s'animer. Elle se tourne lentement vers un coin obscur de la pièce, son doigt gracile pointant vers un petit objet dissimulé dans l'ombre.", "Votre mission est de trouver les quatre chiffres cache à l'intérieur du code de Hammourabi.
-  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des langages anciens ?", "1730",'coucou', 3),
-  ('puzzle', "À peine ai-je prononcé les derniers chiffres du code que le silence pesant de la pièce est interrompu par un cri strident. Un frisson d'appréhension me parcourt alors que je me prépare à affronter l'impensable. D'un geste rapide, j'ouvre la pochette que le conservateur m'avait confiée au début de mon enquête.", "Votre mission est de replacer dans le bon ordre les différentes parties  de la représentation de Belfegor afin de le vaincre et de remporter le  combat.
- Serez-vous capable de relever ce défi stratégique et de  reconstruire cette image pour triompher sur le plan artistique et  tactique ?", "827513946",'coucou', 3);
+--
+-- Déchargement des données de la table `challenge`
+--
+
+INSERT INTO `challenge` (`id`, `name`, `description`, `type`, `instructions`, `answer`, `clue`, `room_id`) VALUES
+(1, 'Rébus au Bureau du Louvre', 'Attends... quelque chose attire mon attention. Peut-être qu\'une visite au bureau pourrait révéler plus que prévu.', 'anagramme', 'Attendez une minute... quelque chose me semble étrange. Dans ce  contexte, un rébus semble être la clé pour percer ce mystère.  Déchiffrez-le avec soin pour découvrir quel trésor il cache parmi les  œuvres d\'art du Louvre. Votre succès dans cette épreuve pourrait bien  nous guider vers la prochaine étape de notre aventure. Bonne chance !', 'Le Radeau de la Meduse', 'savoir compter sur ses pairs', 1),
+(2, 'Louvre en Pieces', 'En examinant de près le bureau, mes yeux ont capté quelque chose  d\'étrange. Des lambeaux de papier déchiré, cachés à gauche de la pièce. Quel mystère se dissimule-t-il dans ces fragments  oubliés ? ', 'puzzle', 'Votre mission est de replacer dans le bon ordre les  différentes parties de la carte du  Musée pour pouvoir vous repérer parmi les différents salles. \r\n  Saurez-vous  relever le défi et reconstituer cette œuvre cartographique ? ', '651342', 'les pieds dans l eau', 1),
+(3, 'Palette des Cariatides', 'La carte suggère fortement de suivre vers la droite, en direction d\'une porte que je croyais fermée. Cette révélation éveille une nouvelle curiosité. Peut-être que derrière cette porte se cache un autre mystère fascinant qui n\'attend que d\'être découvert', 'colors', 'Votre mission, si vous l\'acceptez, est de percer les mystères des  cariatides du musée du Louvre et de découvrir le code couleur associé à  ces quatre statues.\r\n  Êtes-vous prêt à explorer les détails et à révéler les secrets cachés dans ces majestueuses statues ?', 'RougeJauneBleuVert', 'fier allure sur mon piedestal', 1),
+(4, 'MonaDecrypte', 'Je pénètre dans la pièce tant attendue, et là, au milieu de l\'atmosphère chargée d\'histoire, je la découvre. Son regard énigmatique semble me capturer instantanément, m\'invitant à m\'approcher.', 'code', 'Votre mission est de trouver les quatre chiffres cache à l\'intérieur du tableau de la Joconde.\r\n  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise du sfumato ?', '7753', 'regarde plus haut s il te plait', 2),
+(5, 'Anagramme de Lona Misa', 'Au terme de mon observation de la Joconde, mes yeux se tournent vers un chandelier projettant une lumière éthérée sur une énigmatique inscription murale. Il est clair que cette piste pourrait mener à l’objet perdu.', 'anagramme', 'Votre mission est de résoudre l’anagramme en lien avec le texte sur la plus célèbres oeuvres du Musée du Louvre. \r\n  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des lettres ?', 'Leonardo Da Vinci', 'il predestinato', 2),
+(6, 'Fragements de Liberté', 'Même après avoir triomphé du challenge précédent, je me trouve à nouveau confronté à l\'incertitude. Malgré mes efforts, aucun chemin clair ne semble se dessiner vers la prochaine étape. Je réalise qu\'il est peut-être temps de ralentir et d\'observer attentivement les œuvres environnantes. Qui sait quel indice pourrait éclairer la voie vers la suite de cette aventure ?', 'puzzle', 'Votre mission est de replacer dans le bon ordre les différentes parties de la scène de La Liberté guidant le peuple afin de reconstituer cette œuvre emblématique. Saurez-vous relever ce défi artistique et ordonner les éléments pour redonner vie à cette fresque historique ?', '962514837', 'la france ou la terre du milieu', 2),
+(7, 'Mots en Tailleurs', 'Mon périple à travers le passage secret me mène dans une pièce mystérieuse, baignée dans une ambiance glaciale qui fait frissonner mon échine. À première vue, des objets antiques éparpillés semblent conter des histoires oubliées depuis des siècles. Malgré cette atmosphère oppressante, je suis déterminé à poursuivre ma quête.', 'anagramme', 'Votre mission est de résoudre l’anagramme en lien avec le texte. \r\n  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des lettres ?', 'Scribe Accroupi', 'ma prose et ma pose', 3),
+(8, 'Digicode Antique', 'Après avoir minutieusement analysé le Scribe Accroupi, une impression étrange m\'envahit lorsque la statue semble soudain s\'animer. Elle se tourne lentement vers un coin obscur de la pièce, son doigt gracile pointant vers un petit objet dissimulé dans l\'ombre.', 'code', 'Votre mission est de trouver les quatre chiffres cache à l\'intérieur du code de Hammourabi.\r\n  Êtes-vous prêt à défier  votre esprit et à démontrer votre maîtrise des langages anciens ?', '1730', 'ombres, cameleon, peroquet', 3),
+(9, 'Belphegor arrete de chiper', 'À peine ai-je prononcé les derniers chiffres du code que le silence pesant de la pièce est interrompu par un cri strident. Un frisson d\'appréhension me parcourt alors que je me prépare à affronter l\'impensable. D\'un geste rapide, j\'ouvre la pochette que le conservateur m\'avait confiée au début de mon enquête.', 'puzzle', 'Votre mission est de replacer dans le bon ordre les différentes parties  de la représentation de Belfegor afin de le vaincre et de remporter le  combat.\r\n Serez-vous capable de relever ce défi stratégique et de  reconstruire cette image pour triompher sur le plan artistique et  tactique ?', '827513946', 'bon courage', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `room`
+--
+
+CREATE TABLE `room` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `next` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `room`
+--
+
+INSERT INTO `room` (`id`, `name`, `next`) VALUES
+(1, 'lobby', 2),
+(2, 'gallery', 3),
+(3, 'exhibition', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `save`
+--
+
+CREATE TABLE `save` (
+  `user_id` int NOT NULL,
+  `challenge_id` int NOT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `challenge`
+--
+ALTER TABLE `challenge`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `save`
+--
+ALTER TABLE `save`
+  ADD PRIMARY KEY (`user_id`,`challenge_id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `challenge`
+--
+ALTER TABLE `challenge`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
