@@ -24,7 +24,6 @@ class ChallengeController extends AbstractController
      */
     public function show(int $id): string
     {
-
         $challengeManager = new ChallengeManager();
         $challenge = $challengeManager->selectOneById($id);
 
@@ -53,23 +52,12 @@ class ChallengeController extends AbstractController
      */
     public function validate(int $id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['userPuzzleSolution'])) {
-                $this->userSolutionString = $this->prepareUserSolution($_POST['userPuzzleSolution']);
-            }
-            // add other challenge submissions
-            $challengeManager = new ChallengeManager();
-            $challenge = $challengeManager->selectOneById($id);
-            $isCorrect = $this->userSolutionString === $challenge['answer'];
-            // TODO routing to receive $userId
-            if ($this->userSolutionString === $challenge['answer']) {
-                $this->saveProgress(3, $challenge['id']);
-            }
+        $challengeManager = new ChallengeManager();
+        $challenge = $challengeManager->selectOneById($id);
 
-            return $this->twig->render('Challenges/validate.html.twig', [
-                'isCorrect' => $isCorrect,
-                'challenge' => $challenge
-            ]);
-        }
+        return $this->twig->render('Challenges/validate.html.twig', [
+            'isCorrect' => $_POST['user_answer'] === $challenge['answer'],
+            'challenge' => $challenge
+        ]);
     }
 }

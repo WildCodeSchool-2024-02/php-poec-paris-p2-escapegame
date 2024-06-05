@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %} {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/room.css" />
+{% endblock %} {% block content %}
+<form method="post" action="challenges/type">
+    <img src="/assets/images/{{ room.name }}.png" id="zoom-image" />
+    <div id="zoom-zone"></div>
+    <div id="open-challenge-zone"></div>
+    <p id="description">{{ currentChallenge.description }}</p>
+    <button type="submit" id="button" disabled></button>
+</form>
+{% endblock %} {% block javascript %}
+<script>
+    let imgElement = document.getElementById("zoom-image");
+    let zoomZone = document.getElementById("zoom-zone");
+    let openChallengeZone = document.getElementById("open-challenge-zone");
+
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    let roomId = params.get("rid");
+    
+    (function () {
+        if (1 === +roomId) {
+            zoomZone.classList.add("lobby-zoom");
+        } else if (2 === +roomId) {
+            zoomZone.classList.add("gallery-zoom");
+        } else if (3 === +roomId) {
+            zoomZone.classList.add("exhibition-zoom");
+        }
+    })();
+
+    function showText() {
+        let textElement = document.getElementById("description");
+        if (!textElement.classList.contains("visible")) {
+            textElement.classList.add("visible");
+        }
+    }
+
+    function activateFormButton() {
+        let formButton = document.getElementById("button");
+        formButton.disabled = false;
+        console.log("next page");
+    }
+
+    zoomZone.addEventListener("click", function () {
+        showText();
+        zoomZone.style.visibility = "hidden";
+        if (1 === +roomId) {
+            imgElement.classList.add("lobby-zoomed");
+            openChallengeZone.classList.add("lobby-to-challenge");
+        } else if (2 === +roomId) {
+            imgElement.classList.add("gallery-zoomed");
+            openChallengeZone.classList.add("gallery-to-challenge");
+        } else if (3 === +roomId) {
+            imgElement.classList.add("exhibition-zoomed");
+            openChallengeZone.classList.add("exhibition-to-challenge");
+        }
+    });
+
+    openChallengeZone.addEventListener("click", function () {
+        activateFormButton();
+    });
+</script>
+{% endblock %}

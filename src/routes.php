@@ -10,8 +10,9 @@ use App\Controller\HomeController;
 // e.g route '/item/edit?id=1' will execute $itemController->edit(1)
 
 return [
-    'challenges' => ['ChallengeController', 'get', ['id']],
-    'challenges/validation' => ['ChallengeController', 'validate', ['id']],
     'credits' => ['CreditsController', 'index',],
-    'challenges/show' => ['ChallengeController', 'show', ['id']],
+    'room' => ['RoomController', 'show', ['rid', 'cid']],
+    'challenges' => ['ChallengeController', 'show', ['id']],
+    'challenges/validation' => ['ChallengeController', 'validate', ['id']],
+    '' => ['HomeController', 'index',],
 ];

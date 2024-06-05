@@ -1,3 +1,6 @@
+* {
+    margin: 0;
+}
 body {
     display: block;
 }
@@ -33,7 +36,6 @@ h2 {
     align-self: flex-start;
     margin-left: 5rem;
     color: #ffffff;
-    
 }
 
 button {
@@ -42,17 +44,18 @@ button {
     border-radius: 40px;
 }
 
-button:hover, button:active {
+button:hover,
+button:active {
     height: 4.5rem;
     width: 8.5rem;
     transition: 0.5s;
 }
 
 button#validate {
-    background-color: #F4B659;
+    background-color: #f4b659;
 }
 button#validate:hover {
-background-color: goldenrod;
+    background-color: goldenrod;
 }
 
 button#validate:active {
@@ -67,5 +70,5 @@ button#clue:hover {
 }
 
 button#clue:active {
-    background-color: #DEDEDE;
+    background-color: #dedede;
 }
