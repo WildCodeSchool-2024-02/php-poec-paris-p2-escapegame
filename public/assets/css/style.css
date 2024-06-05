@@ -1,3 +1,74 @@
 * {
     margin: 0;
 }
+body {
+    display: block;
+}
+
+.card__outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    width: 90vw;
+    background-color: #000000;
+    border-radius: 20px;
+}
+
+.card__inner {
+    height: 60vh;
+    width: 80vw;
+    background-color: #dedede;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px darkgoldenrod;
+}
+
+.card__content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+h2 {
+    align-self: flex-start;
+    margin-left: 5rem;
+    color: #ffffff;
+}
+
+button {
+    height: 4rem;
+    width: 8rem;
+    border-radius: 40px;
+}
+
+button:hover,
+button:active {
+    height: 4.5rem;
+    width: 8.5rem;
+    transition: 0.5s;
+}
+
+button#validate {
+    background-color: #f4b659;
+}
+button#validate:hover {
+    background-color: goldenrod;
+}
+
+button#validate:active {
+    background-color: gold;
+}
+
+button#clue {
+    background-color: gray;
+}
+button#clue:hover {
+    background-color: darkgrey;
+}
+
+button#clue:active {
+    background-color: #dedede;
+}
