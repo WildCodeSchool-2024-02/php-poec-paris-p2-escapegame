@@ -12,43 +12,6 @@
                 action="validation/?id={{ challenge.id }}"
             >
                 <div class="puzzle__container" id="puzzle-container">    
-                      {# {% if challenge.level is same as('easy') %}
-                        {% set images = [
-                            '1.png',
-                            '2.png',
-                            '3.png',
-                            '4.png',
-                            '5.png',
-                            '6.png'
-                        ] %}
-                      {% elseif challenge.level is same as('average') %}
-                        {% set images = [
-                            '1.png',
-                            '2.png',
-                            '3.png',
-                            '4.png',
-                            '5.png',
-                            '6.png',
-                            '7.png',
-                            '8.png',
-                            '9.png',
-                        ] %}
-                      {% elseif challenge.level is same as('hard') %}
-                      {% set images = [
-                            '1.png',
-                            '2.png',
-                            '3.png',
-                            '4.png',
-                            '5.png',
-                            '6.png',
-                            '7.png',
-                            '8.png',
-                            '9.png',
-                            '10.png',
-                            '11.png',
-                            '12.png'
-                        ] %}
-                      {% endif %} #}
                       {% set max_index = 0 %}
                       {% if challenge.level is same as('hard') %}
                           {% set max_index = 12 %}
