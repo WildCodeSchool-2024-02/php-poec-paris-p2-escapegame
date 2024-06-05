@@ -16,15 +16,6 @@ class ChallengeController extends AbstractController
     }
 
     /**
-     * Show save user challenge progress
-     */
-    public function saveProgress(int $userId, int $challengeId): void
-    {
-        $saveController = new SaveManager();
-        $saveController->saveProgress($userId, $challengeId);
-    }
-
-    /**
      * Show informations for a specific challenge
      */
     public function show(int $id): string
@@ -43,7 +34,9 @@ class ChallengeController extends AbstractController
     {
         $challenge = $this->challengeManager->selectOneById($id);
 
-        $this->saveProgress(7, $challenge['id']);
+        // TODO add userId dynamically
+        $saveController = new SaveManager();
+        $saveController->saveProgress(7, $id);
 
         return $this->twig->render('Challenges/validate.html.twig', [
             'isCorrect' => $_POST['user_answer'] === $challenge['answer'],
