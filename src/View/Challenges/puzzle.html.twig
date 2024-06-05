@@ -12,7 +12,7 @@
                 action="validation/?id={{ challenge.id }}"
             >
                 <div class="puzzle__container" id="puzzle-container">    
-                      {% if challenge.level is same as('easy') %}
+                      {# {% if challenge.level is same as('easy') %}
                         {% set images = [
                             '1.png',
                             '2.png',
@@ -48,12 +48,21 @@
                             '11.png',
                             '12.png'
                         ] %}
+                      {% endif %} #}
+                      {% set max_index = 0 %}
+                      {% if challenge.level is same as('hard') %}
+                          {% set max_index = 12 %}
+                      {% elseif challenge.level is same as('average') %}
+                          {% set max_index = 9 %}
+                      {% elseif challenge.level is same as('easy') %}
+                          {% set max_index = 6 %}
                       {% endif %}
-                    {% for image in images %}
+                      
+                      {% for index in range(1, max_index) %}           
                     <div
                         class="puzzle_container_piece"
-                        alt="Image {{ loop.index }}"
-                        id="{{ loop.index }}"
+                        alt="Image {{ index }}"
+                        id="{{ index }}"
                         draggable="true"
                         ondragstart="drag(event)"
                         ondrop="drop(event)"
@@ -61,10 +70,10 @@
                     >
                         <img
                             src="/assets/images/challenges/{{ challenge.id }}/{{
-                                image
-                            }}"
-                            alt="Image {{ loop.index }}"
-                            id="{{ image }}"
+                                index
+                            }}.png"
+                            alt="Image {{ index }}"
+                            id="{{ index }}"
                             draggable="true"
                             ondragstart="drag(event)"
                             ondrop="drop(event)"
@@ -75,14 +84,14 @@
                 </div>
               
                 <div class="puzzle__solution-container">
-                    {% for index in range(1, images|length) %}
+                    {% for index in range(1, max_index) %}
                     <div
                         id="box{{ index }}"
                         draggable="true"
                         class="puzzle__solution-container__block"
                         ondrop="drop(event)"
                         ondragover="allowDrop(event)"
-                    /><input name="userPuzzleSolution" type="hidden" id="user-solution"/>
+                    /><input name="user_answer" type="hidden" id="user_answer"/>
                 </div>
                 {% endfor %}
                 </div>
@@ -107,23 +116,23 @@
 </div>
 {% endblock %} {% block javascript %}
 <script>
-
-    const input = document.getElementById('user-solution');
-    const button = document.getElementById("validate");
-    const puzzle = document.querySelector("form.puzzle");
-    const container = document.getElementById("puzzle-container"); 
+    
     let imgId = "";
     const userSolution = [];
 
+    const input = document.getElementById('user_answer');
+    const button = document.getElementById("validate");
+    const puzzle = document.querySelector("form.puzzle");
+    const container = document.getElementById("puzzle-container"); 
+    const images = Array.from(container.children);
+
     (function() {
-  
-        const elementsArray = Array.from(container.children);
-        for (let i = elementsArray.length - 1; i > 0; i--) {
+        for (let i = images.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [elementsArray[i], elementsArray[j]] = [elementsArray[j], elementsArray[i]];
+            [images[i], images[j]] = [images[j], images[i]];
         }
         container.innerHTML = '';
-        elementsArray.forEach(element => container.appendChild(element));
+        images.forEach(element => container.appendChild(element));
     })();
         
     function allowDrop(ev) {
@@ -147,17 +156,10 @@
         while (userSolution[userSolution.length - 1] === null) {
             userSolution.pop();
         }
-        input.value = JSON.stringify(userSolution);
+        input.value = userSolution.map(item => item.replace('.png', '')).join('');
         puzzle.appendChild(input);
-        activateValidateButton(userSolution);
-    }
 
-    function activateValidateButton(arr) {
-        if (!userSolution.some((element) => element === null)) {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        }
+        button.disabled = input.value.length !== images.length;
     }
 </script>
  {% endblock %}
