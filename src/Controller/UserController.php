@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\SaveManager;
 
-class SaveController extends AbstractController
+class UserController extends AbstractController
 {
     public function saveProgress(int $userId, int $challengeId): void
     {

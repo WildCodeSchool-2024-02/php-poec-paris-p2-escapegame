@@ -2,20 +2,25 @@
 
 namespace App\Controller;
 
-use Exception;
 use App\Model\ChallengeManager;
-use App\Controller\SaveController;
+use App\Controller\UserController;
 
 class ChallengeController extends AbstractController
 {
-    public $userSolutionString = "";
+    private $challengeManager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->challengeManager = new ChallengeManager();
+    }
 
     /**
      * Show save user challenge progress
      */
     public function saveProgress(int $userId, int $challengeId): void
     {
-        $saveController = new SaveController();
+        $saveController = new UserController();
         $saveController->saveProgress($userId, $challengeId);
     }
 
@@ -24,8 +29,7 @@ class ChallengeController extends AbstractController
      */
     public function show(int $id): string
     {
-        $challengeManager = new ChallengeManager();
-        $challenge = $challengeManager->selectOneById($id);
+        $challenge = $this->challengeManager->selectOneById($id);
 
         return $this->twig->render('Challenges/' . $challenge['type'] . '.html.twig', [
             'challenge' => $challenge,
@@ -33,27 +37,13 @@ class ChallengeController extends AbstractController
     }
 
     /**
-     * Clean json array received for puzzle challenge
-     */
-    public function prepareUserSolution($userSolution)
-    {
-        $jsonString = $userSolution;
-        $userSolution = json_decode($jsonString, true);
-        $userSolution = array_map(function ($userSolution) {
-            return preg_replace('/\.png$/', '', $userSolution);
-        }, $userSolution);
-        $userSolution = array_map('trim', array_map('htmlentities', $userSolution));
-        $userSolutionString = implode('', $userSolution);
-        return $userSolutionString;
-    }
-
-    /**
      * Validate the array, calls saveProgress and if necessary prepareUserSolution
      */
     public function validate(int $id)
     {
-        $challengeManager = new ChallengeManager();
-        $challenge = $challengeManager->selectOneById($id);
+        $challenge = $this->challengeManager->selectOneById($id);
+
+        $this->saveProgress(7, $challenge['id']);
 
         return $this->twig->render('Challenges/validate.html.twig', [
             'isCorrect' => $_POST['user_answer'] === $challenge['answer'],
