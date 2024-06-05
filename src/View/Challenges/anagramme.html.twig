@@ -6,19 +6,19 @@
 
 {% block content %}
 <main>
-	<h1><span class='handwritten'>{{ name }}</span></h1>
+	<h1><span class='handwritten'>{{ challenge.name }}</span></h1>
    <section>
       <div>
-         {% include 'Assets/text_id_' ~ id ~'.html.twig' %}
+         {% include 'Assets/text_id_' ~ challenge.id ~'.html.twig' %}
       </div>
       <article>
-         <p>{{ instructions }}</p>
-         {% include 'Assets/wordplay_id_' ~ id ~'.html.twig' %}
-         <form method='post' action="/challenges/validation" id='validation'>
-            <input type="hidden" value="{{ id }}">
+         <p>{{ challenge.instructions }}</p>
+         {% include 'Assets/wordplay_id_' ~ challenge.id ~'.html.twig' %}
+         <form method='post' action="validation/?id={{ challenge.id }}" id='validation'>
+            <input type="hidden" value="{{ challenge.id }}">
             <input type="text" name='user_answer'></input>
          </form>
-         <p><i id='indice' class='hidden'>{{ clue }}</i></p>
+         <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
       </article>
    </section>
    <aside>
