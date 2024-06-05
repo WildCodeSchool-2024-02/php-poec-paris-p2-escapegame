@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\RoomManager;
+use App\Model\ChallengeManager;
 
 class RoomController extends AbstractController
 {
@@ -20,12 +21,18 @@ class RoomController extends AbstractController
     /**
      * Show informations for a specific room
      */
-    public function show(int $id): string
+    public function show($roomId, $challengeId): string
     {
         $roomManager = new RoomManager();
-        $roomManager->selectOneById($id);
+        $room = $roomManager->selectOneById($roomId);
 
-        return $this->twig->render('Rooms/' . $id . '.html.twig', ['id' => $id]);
+        $challengeManager = new ChallengeManager();
+        $currentChallenge = $challengeManager->selectOneById($challengeId);
+
+        return $this->twig->render('Rooms/room.html.twig', [
+            'room' => $room,
+            'currentChallenge' => $currentChallenge,
+        ]);
     }
 
     /**
