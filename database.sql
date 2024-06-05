@@ -74,14 +74,14 @@ INSERT INTO `challenge` (`id`, `name`, `description`, `type`, `instructions`, `a
 CREATE TABLE `room` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
-  `next` int DEFAULT NULL
+  `next_room` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `room`
 --
 
-INSERT INTO `room` (`id`, `name`, `next`) VALUES
+INSERT INTO `room` (`id`, `name`, `next_room`) VALUES
 (1, 'lobby', 2),
 (2, 'gallery', 3),
 (3, 'exhibition', NULL);
