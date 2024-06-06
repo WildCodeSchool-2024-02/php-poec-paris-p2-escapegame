@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Model\UserManager;
+use Exception;
 
 class UserController extends AbstractController
 {
-    private $userManager;
+    private UserManager $userManager;
+    public $errors = [];
 
     public function __construct()
     {
@@ -15,29 +17,33 @@ class UserController extends AbstractController
     }
     public function show(): string
     {
-        return $this->twig->render('Login/index.html.twig', []);
+        return $this->twig->render('Register/index.html.twig', []);
     }
 
-    public function registerNewUser(): string
+    public function registerNewUser(): void
     {
-        $userExists = $this->userManager->userExists(($_POST['userName']), ($_POST['userEmail']));
+        $userExists = $this->userManager->userExists(($_POST['name']), ($_POST['email']));
+        $passwordsMatch = $_POST['password'] === $_POST['confirmPassword'];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$userExists) {
-            if (
-                isset($_POST['userName']) &&
-                isset($_POST['userEmail']) &&
-                isset($_POST['userPassword'])
-            ) {
-                $this->userManager->save(
-                    $_POST['userName'],
-                    $_POST['userEmail'],
-                    $_POST['userPassword']
-                );
+        if (
+            $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) &&
+            isset($_POST['email']) &&
+            isset($_POST['password'])
+        ) {
+            if ($userExists) {
+                $this->errors = 'Un utilisateur avec ce nom ou email existe déjà';
             }
+            if (!$passwordsMatch) {
+                $this->errors = 'Merci de vérifier le mot de passe';
+            }
+
+            $this->userManager->save(
+                $_POST['name'],
+                $_POST['email'],
+                $_POST['password']
+            );
             header('Location: /');
             exit;
-        } else {
-            return 'user already registered';
         }
     }
 }
