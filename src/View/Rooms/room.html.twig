@@ -20,61 +20,102 @@
 function displayClueBasedOnChall() {
     const button = document.getElementById('myButton');
     button.addEventListener('click', () => {
-    const textElement = document.getElementById("description");
-    textElement.classList.toggle("hidden");
-    button.classList.toggle('hidden');
+        const textElement = document.getElementById("description");
+        textElement.classList.toggle("hidden");
+        button.classList.toggle('hidden');
     });
 }
 
+function addClassToZoomZone(classMap, challengeId) {
+    const zoomZone = document.getElementById('zoom-zone');
+    if (!zoomZone) {
+        console.error("Element with id 'zoom-zone' not found.");
+        return;
+    }
+
+    if (classMap[challengeId]) {
+        zoomZone.classList.add(classMap[challengeId].class);
+    } else {
+        console.error("Class not found for challengeId:", challengeId);
+    }
+}
+
+function addLinkToZoomZone(classMap, challengeId) {
+    const zoomZone = document.getElementById('zoom-zone');
+    if (!zoomZone) {
+        console.error("Element with id 'zoom-zone' not found.");
+        return;
+    }
+
+    if (classMap[challengeId]) {
+        const link = document.createElement('a');
+        link.href = classMap[challengeId].link;
+        link.style.display = 'block'; // Ensure the link takes up the entire width
+
+        // Clone the zoomZone content
+        const clone = zoomZone.cloneNode(true);
+        
+        // Clear the original zoomZone content
+        zoomZone.innerHTML = '';
+
+        // Append the cloned content to the link
+        link.appendChild(clone);
+
+        // Replace the original zoomZone content with the link
+        zoomZone.appendChild(link);
+    } else {
+        console.error("Class not found for challengeId:", challengeId);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-const url = new URL(window.location.href);
-const params = new URLSearchParams(url.search);
-let roomId = params.get("rid");
-let challengeId = params.get("cid");
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    let roomId = params.get("rid");
+    let challengeId = params.get("cid");
 
-// Convert roomId and challengeId to integers
-roomId = roomId ? parseInt(roomId, 10) : null;
-challengeId = challengeId ? parseInt(challengeId, 10) : null;
+    // Convert roomId and challengeId to integers
+    roomId = roomId ? parseInt(roomId, 10) : null;
+    challengeId = challengeId ? parseInt(challengeId, 10) : null;
 
-// Debugging: log the extracted values
-console.log("Room ID:", roomId);
-console.log("Challenge ID:", challengeId);
+    const body = document.getElementById('body');
 
-const button = document.getElementById('myButton');
-// Add event listener to the button if conditions are met
-if (roomId === 1) {
-    displayClueBasedOnChall();
-} else if (roomId === 2) {
-    body.classList.add('image2');
-    displayClueBasedOnChall();
-} else if (roomId === 3) {
-    body.classList.add('image3');
-    displayClueBasedOnChall();
-} else {
-    console.warn("Conditions not met for adding event listener.");
-}
+    // Add classes and event listener based on roomId
+    switch (roomId) {
+        case 1:
+            displayClueBasedOnChall();
+            break;
+        case 2:
+            body.classList.add('image2');
+            displayClueBasedOnChall();
+            break;
+        case 3:
+            body.classList.add('image3');
+            displayClueBasedOnChall();
+            break;
+        default:
+            console.warn("Conditions not met for adding event listener.");
+    }
 
-const classMap = {
-    1: "lobby-zoom-1",
-    2: "lobby-zoom-2",
-    3: "lobby-zoom-3",
-    4: "gallery-zoom-4",
-    5: "gallery-zoom-5",
-    6: "gallery-zoom-6",
-    7: "exhibition-zoom-7",
-    8: "exhibition-zoom-8",
-    9: "exhibition-zoom-9"
-};
+    const classMap = {
+        1: { class: "lobby-zoom-1", link: "http://localhost:8000/challenges?id=1" },
+        2: { class: "lobby-zoom-2", link: "http://localhost:8000/challenges?id=2" },
+        3: { class: "lobby-zoom-3", link: "http://localhost:8000/challenges?id=3" },
+        4: { class: "gallery-zoom-4", link: "http://localhost:8000/challenges?id=4" },
+        5: { class: "gallery-zoom-5", link: "http://localhost:8000/challenges?id=5" },
+        6: { class: "gallery-zoom-6", link: "http://localhost:8000/challenges?id=6" },
+        7: { class: "exhibition-zoom-7", link: "http://localhost:8000/challenges?id=7" },
+        8: { class: "exhibition-zoom-8", link: "http://localhost:8000/challenges?id=8" },
+        9: { class: "exhibition-zoom-9", link: "http://localhost:8000/challenges?id=9" }
+    };
 
-let imgElement = document.getElementById("zoom-image");
-let zoomZone = document.getElementById("zoom-zone");
-let openChallengeZone = document.getElementById("open-challenge-zone");
-
-if (classMap[challengeId]) {
-    zoomZone.classList.add(classMap[challengeId]);
-}
+    addClassToZoomZone(classMap, challengeId);
+    addLinkToZoomZone(classMap, challengeId);
 });
+
+// let imgElement = document.getElementById("zoom-image");
+// let zoomZone = document.getElementById("zoom-zone");
+// let openChallengeZone = document.getElementById("open-challenge-zone");
 
 // const url = new URL(window.location.href);
 // const params = new URLSearchParams(url.search);
