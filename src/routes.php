@@ -12,6 +12,8 @@ use App\Controller\HomeController;
 return [
     '' => ['HomeController', 'index',],
     'credits' => ['CreditsController', 'index',],
+    'register' => ['UserController', 'show'],
+    'register/process' => ['UserController', 'registerNewUser'],
     'room' => ['RoomController', 'show', ['rid', 'cid']],
     'challenges' => ['ChallengeController', 'show', ['id']],
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],
