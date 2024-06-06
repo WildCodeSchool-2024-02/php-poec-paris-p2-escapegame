@@ -41,6 +41,10 @@ div {
     width: 50%;
 }
 
+div, p {
+    margin: auto;
+}
+
 article {
     display: flex;
     flex-direction: column;
@@ -65,14 +69,11 @@ form {
 
 i {
     color: red;
+    margin: 0;
 }
 
 .hidden {
     display: none;
-}
-
-.visible {
-    display: block;
 }
 
 input {
