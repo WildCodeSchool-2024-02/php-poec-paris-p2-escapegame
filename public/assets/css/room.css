@@ -1,3 +1,7 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -11,8 +15,8 @@ img {
 }
 
 .lobby-zoomed {
-    transition: transform 0.5s;
-    transform: translate(-40%, -40%) scale(3);
+    transition: transform 0.8s;
+    transform: translate(-10%, -10%) scale(1.2);
 }
 
 .gallery-zoomed {
@@ -32,18 +36,19 @@ div {
 .lobby-zoom {
     position: absolute;
     z-index: 4;
-    height: 15vh;
+    height: 20vh;
     width: 20vw;
-    margin-left: 25rem;
-    margin-bottom: 10rem;
+    margin-left: 35rem;
+    margin-bottom: 14rem;
 }
 
 .lobby-to-challenge {
     position: absolute;
     z-index: 3;
-    height: 35vh;
-    width: 65vw;
-    margin-left: 5rem;
+    height: 45vh;
+    width: 35vw;
+    margin-left: 35rem;
+    margin-bottom: 20vh;
 }
 
 .gallery-zoom {
