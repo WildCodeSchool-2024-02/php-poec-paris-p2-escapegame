@@ -50,18 +50,14 @@ function addLinkToZoomZone(classMap, challengeId) {
     if (classMap[challengeId]) {
         const link = document.createElement('a');
         link.href = classMap[challengeId].link;
-        link.style.display = 'block'; // Ensure the link takes up the entire width
+        link.style.display = 'block';
 
-        // Clone the zoomZone content
         const clone = zoomZone.cloneNode(true);
         
-        // Clear the original zoomZone content
         zoomZone.innerHTML = '';
 
-        // Append the cloned content to the link
         link.appendChild(clone);
 
-        // Replace the original zoomZone content with the link
         zoomZone.appendChild(link);
     } else {
         console.error("Class not found for challengeId:", challengeId);
@@ -74,13 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let roomId = params.get("rid");
     let challengeId = params.get("cid");
 
-    // Convert roomId and challengeId to integers
     roomId = roomId ? parseInt(roomId, 10) : null;
     challengeId = challengeId ? parseInt(challengeId, 10) : null;
 
     const body = document.getElementById('body');
 
-    // Add classes and event listener based on roomId
     switch (roomId) {
         case 1:
             displayClueBasedOnChall();

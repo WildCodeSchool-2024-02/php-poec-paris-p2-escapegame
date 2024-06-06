@@ -1,11 +1,26 @@
-{% extends 'layout.html.twig' %} {% block content %} {% if isCorrect %}
-<form method="post" action="/home">
-    <h1>Vous avez gagné !</h1>
-    <button type="submit">Prochain challenge</button>
-</form>
-{% else %}
-<form method="post" action="/challenges/show?id={{ challenge.id }}">
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/result.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    {% if isCorrect %}
+        {% if challenge.room_id == 9 %}
+            {% set redirectUrl = '/outro' %}
+        {% else %}
+            {% set redirectUrl ="/room?rid=" ~ nextRoomId ~ "&cid=" ~ (challenge.id + 1) %}
+    {% endif %}
+    <h1>Félicitations !</h1>
+    <form method="post" action= {{ redirectUrl }}>
+        <button type="submit">Prochain challenge</button>
+    </form>
+    {% else %}
     <h1>Perdu</h1>
-    <button type="submit">Rejouer</button>
-</form>
-{% endif %} {% endblock %}
+    <form method="post" action="/challenges?id={{ challenge.id }}">
+        <button type="submit">Rejouer</button>
+    </form>
+    {% endif %}
+</main>
+{% endblock %}

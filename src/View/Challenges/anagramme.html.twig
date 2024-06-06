@@ -1,11 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Challenge type = Anagramme</h1>
-</body>
-</html>
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/anagramme.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<h1><span class='handwritten'>{{ challenge.name }}</span></h1>
+   <section>
+      <div>
+         {% include 'Assets/text_id_' ~ challenge.id ~'.html.twig' %}
+      </div>
+      <article>
+         <p>{{ challenge.instructions }}</p>
+         {% include 'Assets/wordplay_id_' ~ challenge.id ~'.html.twig' %}
+         <form method='post' action="/challenges/validation/?id={{ challenge.id }}" id='validation'>
+            <input type="hidden" value="{{ challenge.id }}">
+            <input type="text" name='user_answer'></input>
+         </form>
+         <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
+      </article>
+   </section>
+   <aside>
+      <button id ='clueButton' class='clue' type="button">Indice</button>
+      <button class='validate' type="submit" form="validation">Valider</button>
+   </aside>
+   
+</main>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+       const button = document.getElementById('clueButton');
+       button.addEventListener('click', () => {
+           const clueElement = document.getElementById('indice');
+           clueElement.classList.toggle('hidden');
+       });
+   });
+</script>
+{% endblock %}
