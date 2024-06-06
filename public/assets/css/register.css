@@ -43,25 +43,3 @@ input {
     background-color: #243B55;
     color: #ffffff;
 }
-
-button {
-    align-self: center;
-    margin-top: 0.8rem;
-    background-color: #F4B659;
-    border-radius: 40px;
-    padding: 1rem;
-}
-
-button:hover {
-    font-size: 1rem;
-    background-color: goldenrod;
-    padding: 1.2rem;
-    transition: 0.5s;
-}
-
-button:active {
-    font-size: 1rem;
-    background-color: gold;
-    padding: 1.5rem;
-    transition: 0.5s;
-}

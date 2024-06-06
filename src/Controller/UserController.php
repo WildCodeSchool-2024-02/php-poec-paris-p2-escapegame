@@ -15,9 +15,13 @@ class UserController extends AbstractController
         parent::__construct();
         $this->userManager = new UserManager();
     }
-    public function show(): string
+    public function showRegisterPage(): string
     {
         return $this->twig->render('Register/index.html.twig', []);
+    }
+    public function showLoginPage(): string
+    {
+        return $this->twig->render('Login/index.html.twig', []);
     }
 
     public function registerNewUser(): void
@@ -44,6 +48,20 @@ class UserController extends AbstractController
             );
             header('Location: /');
             exit;
+        }
+    }
+
+    public function login()
+    {
+        if (
+            $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) ||
+            isset($_POST['email']) &&
+            isset($_POST['password'])
+        ) {
+            $currentUser = $this->userManager->selectOneByEmail($_POST['email']);
+            if (($_POST['password']) === $currentUser['password']) {
+                echo 'user login successful';
+            }
         }
     }
 }
