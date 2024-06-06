@@ -7,8 +7,8 @@ use App\Model\SaveManager;
 
 class ChallengeController extends AbstractController
 {
-    private $challengeManager;
-    private $saveManager;
+    private ChallengeManager $challengeManager;
+    private SaveManager $saveManager;
 
     public function __construct()
     {
