@@ -1,0 +1,26 @@
+<aside>
+    <span>
+        <h1>Louvre</h1>
+        <p>
+            Bienvenue sur le site du Musée du Louvre ! Nous sommes ravis de vous
+            inviter à participer à notre nouveau jeu interactif. Pendant ce jeu,
+            vous aurez l'occasion de découvrir des trésors artistiques du Musée
+            du Louvre et d'en apprendre davantage sur leur histoire fascinante.
+            Préparez-vous à une aventure captivante à travers les époques et les
+            chefs-d'œuvre qui ont marqué l'histoire de l'art. Explorez, résolvez
+            des énigmes et laissez-vous surprendre par les secrets cachés de
+            notre musée. Bonne chance et amusez-vous bien ! L'équipe du Musée du
+            Louvre
+        </p>
+    </span>
+</aside>
+<form method="POST" action="{{ formAction }}">
+    {% block formContent %} 
+    {% if formAction == 'register/process' %} 
+    {% include
+    'Assets/_register_form_content.html.twig' %} 
+    {% elseif formAction == '/'%}
+    {% include 'Assets/_login_form_content.html.twig' %}
+    {% endif %}
+    {% endblock%}
+</form>

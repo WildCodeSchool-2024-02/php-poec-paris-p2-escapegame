@@ -24,41 +24,6 @@ class UserController extends AbstractController
         return $this->twig->render('Login/index.html.twig', []);
     }
 
-    // public function registerNewUser()
-    // {
-    //     if (
-    //         $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) &&
-    //         isset($_POST['email']) &&
-    //         isset($_POST['password'])
-    //     ) {
-    //         $data = array_map('htmlentities', array_map('trim', $_POST));
-    //         $userExists = $this->userManager->userExists(($data['name']), ($data['email']));
-    //         $passwordsMatch = $data['password'] === $data['confirmPassword'];
-
-    //         if (
-    //             empty($data['name']) ||
-    //             empty($data['email']) ||
-    //             empty($data['password']) ||
-    //             empty($data['confirmPassword'])
-    //         ) {
-    //             $this->errors[] = "Vérifiez que tous les champs sont bien remplis";
-    //         }
-    //         if ($userExists) {
-    //             $this->errors[] = 'Un utilisateur avec ce nom ou email existe déjà';
-    //         }
-    //         if (!$passwordsMatch) {
-    //             $this->errors[] = 'Merci de vérifier le mot de passe';
-    //         }
-    //         if (empty($this->errors)) {
-    //             $this->userManager->save(
-    //                 $_POST['name'],
-    //                 $_POST['email'],
-    //                 $_POST['password']
-    //             );
-    //         }
-    //         return $this->twig->render('Login/index.html.twig', ['errors' => $this->errors]);
-    //     }
-    // }
     public function registerNewUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

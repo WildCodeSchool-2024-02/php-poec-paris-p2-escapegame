@@ -2,35 +2,11 @@
     rel="stylesheet"
     href="/assets/css/register.css"
 />{% endblock %} {% block content %}
-<div class="register">
-    <aside>
-        <span>
-            <h1>Louvre</h1>
-            <p>
-                Bienvenue sur le site du Musée du Louvre ! Nous sommes ravis de
-                vous inviter à participer à notre nouveau jeu interactif.
-                Pendant ce jeu, vous aurez l'occasion de découvrir des trésors
-                artistiques du Musée du Louvre et d'en apprendre davantage sur
-                leur histoire fascinante. Préparez-vous à une aventure
-                captivante à travers les époques et les chefs-d'œuvre qui ont
-                marqué l'histoire de l'art. Explorez, résolvez des énigmes et
-                laissez-vous surprendre par les secrets cachés de notre musée.
-                Bonne chance et amusez-vous bien ! L'équipe du Musée du Louvre
-            </p>
-        </span>
-    </aside>
-    <form method="post" action="/register/process">
-        <h4>Inscrivez-vous pour jouer !</h4>
-        <label for="name">VOTRE NOM D'UTILISATEUR</label>
-        <input type="text" name="name" />
-        <label for="email">VOTRE E-MAIL</label>
-        <input type="email" name="email" />
-        <label for="password">VOTRE MOT DE PASSE</label>
-        <input type="password" name="password" />
-        <label for="confirmPassword">CONFIRMEZ LE MOT DE PASSE</label>
-        <input type="password" name="confirmPassword" />
-        <button type="submit">Rejoindre l'aventure</button>
-        <p>Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a></p>
+<div class="register_login">
+    {% include 'Assets/_form.html.twig' with {'formAction': 'register/process'} %}
+        <p>
+            Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a>
+        </p>
     </form>
 </div>
 {% endblock %}
