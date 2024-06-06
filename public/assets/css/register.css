@@ -1,45 +1,48 @@
-.regsiter {
+.register {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 2.5rem;
     height: 100vh;
-
 }
 
 aside {
     grid-column-start: 1;
-    grid-column-end: 2;
-    line-height: 2rem;
-    background-color: #1A1A1A;
-    color: #ffffff;
-    padding: 4rem;
+    background-color: #1a1a1a;
 }
 
+span {
+    display: inline-block;
+    grid-column-start: 1;
+    line-height: 2rem;
+    color: #ffffff;
+    padding: 0 2rem;
+    margin-top: 10rem;
+}
 
 form {
     grid-column-start: 2;
-    grid-column-end: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 0.2rem;
-    min-height: 400px;
+    height: 400px;
     padding: 1.5rem;
-    background-color: #141E30;
+    margin-top: 10rem;
+    margin-right: 5rem;
+    background-color: #141e30;
     border-radius: 20px;
     color: #ffffff;
 }
 
-h4 {
-    align-self: center;
-    text-decoration: underline;
+h4, p {
+    margin: auto;
 }
 
 input {
     height: 1.5rem;
     width: 100%;
     border-radius: 10px;
-    background-color: #243B55;
+    background-color: #243b55;
     color: #ffffff;
 }
