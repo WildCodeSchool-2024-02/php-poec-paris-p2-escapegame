@@ -8,7 +8,7 @@
 {% block content %}
 <main>
     {% if isCorrect %}
-        {% if challenge.room_id == 9 %}
+        {% if challenge.id == 9 %}
             {% set redirectUrl = '/outro' %}
         {% else %}
             {% set redirectUrl ="/room?rid=" ~ nextRoomId ~ "&cid=" ~ (challenge.id + 1) %}
