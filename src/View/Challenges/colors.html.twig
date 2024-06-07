@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/challenge.css">
 	<link rel="stylesheet" href="/assets/css/colors.css">
 {% endblock %}
 
@@ -38,5 +39,8 @@
            clueElement.classList.toggle('visible');
        });
    });
+   var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
 </script>
 {% endblock %}

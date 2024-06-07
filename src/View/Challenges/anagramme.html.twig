@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/challenge.css">
 	<link rel="stylesheet" href="/assets/css/anagramme.css">
 {% endblock %}
 
@@ -31,35 +32,15 @@
 
 {% block javascript %}
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-       const button = document.getElementById('clueButton');
-       button.addEventListener('click', () => {
-           const clueElement = document.getElementById('indice');
-           clueElement.classList.toggle('hidden');
-       });
+   document.addEventListener('DOMContentLoaded', (event) => {
+      const button = document.getElementById('clueButton');
+      button.addEventListener('click', () => {
+         const clueElement = document.getElementById('indice');
+         clueElement.classList.toggle('hidden');
+      });
    });
-   if ( dynamicId === 1) {
-    const text = document.getElementById('redirection');
-    text.addEventListener('click', () => {
-        var newDynamicId = dynamicId + 1;
-        window.location = `http://localhost:8000/room?id=${newDynamicId}`;
-});
-} else if ( dynamicId === 2) {
-    const body = document.getElementById('body');
-    body.classList.add('image2');
-    const text = document.getElementById('redirection');
-    text.addEventListener('click', () => {
-        var newDynamicId = dynamicId + 1;
-        window.location = `http://localhost:8000/room?id=${newDynamicId}`;
-    });
-} else if ( dynamicId === 3) {
-    const body = document.getElementById('body');
-    body.classList.add('image3');
-    const text = document.getElementById('redirection');
-    text.addEventListener('click', () => {
-        var newDynamicId = dynamicId + 1;
-        window.location = `http://localhost:8000/outro`;
-    });
-}
+   var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
 </script>
 {% endblock %}
