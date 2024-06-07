@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/room.css">
     <link rel="stylesheet" href="/assets/css/result.css">
 {% endblock %}
 
@@ -23,4 +24,12 @@
     </form>
     {% endif %}
 </main>
+{% endblock %}
+
+{% block javascript %}
+<script>
+var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
+</script>
 {% endblock %}
