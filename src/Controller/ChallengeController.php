@@ -43,9 +43,11 @@ class ChallengeController extends AbstractController
             $nextRoomId += 1;
         }
 
+        $answers = array_map('trim', array_map('htmlentities', array_map('strtolower', $_POST)));
+
         return $this->twig->render('Challenges/validate.html.twig', [
             'nextRoomId' => $nextRoomId,
-            'isCorrect' => $_POST['user_answer'] === $challenge['answer'],
+            'isCorrect' => $answers['user_answer'] === $challenge['answer'],
             'challenge' => $challenge
         ]);
     }
