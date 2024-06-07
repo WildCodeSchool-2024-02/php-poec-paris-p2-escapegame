@@ -65,6 +65,7 @@ function addLinkToZoomZone(classMap, challengeId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const zoomZone = document.getElementById('zoom-zone');
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     let roomId = params.get("rid");
@@ -86,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
         case 3:
             body.classList.add('image3');
             displayClueBasedOnChall();
+            if (challengeId === 9) {
+                zoomZone.classList.add('belphegor');
+            };
             break;
         default:
             console.warn("Conditions not met for adding event listener.");
