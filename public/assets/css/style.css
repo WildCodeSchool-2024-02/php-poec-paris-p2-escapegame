@@ -78,3 +78,75 @@ button#clue:active {
     font-weight: 300;
     font-style: normal;
 }
+
+.register_login {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    height: 100vh;
+}
+
+aside {
+    grid-column-start: 1;
+    background-color: #1a1a1a;
+}
+
+span {
+    display: inline-block;
+    grid-column-start: 1;
+    line-height: 2rem;
+    color: #ffffff;
+    padding: 0 2rem;
+    margin-top: 10rem;
+}
+
+
+h4, p {
+    margin: auto;
+}
+
+input {
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #243b55;
+    color: #ffffff;
+}
+
+form {
+    grid-column-start: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.2rem;
+    height: 400px;
+    padding: 1.5rem;
+    margin-top: 10rem;
+    margin-right: 5rem;
+    background-color: #141e30;
+    border-radius: 20px;
+    color: #ffffff;
+}
+
+.registerButton {
+    align-self: center;
+    margin-top: 0.8rem;
+    background-color: #f4b659;
+    border-radius: 40px;
+    padding: 1rem;
+}
+
+.registerButton:hover {
+    font-size: 1rem;
+    background-color: goldenrod;
+    padding: 1.2rem;
+    transition: 0.5s;
+}
+
+.registerButton:active {
+    font-size: 1rem;
+    background-color: gold;
+    padding: 1.5rem;
+    transition: 0.5s;
+}
