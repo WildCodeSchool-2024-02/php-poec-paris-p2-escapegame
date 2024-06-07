@@ -2,10 +2,39 @@
     margin: 0;
 }
 
+body {
+    background-image: url("../images/credits.png");
+    background-size: cover ;
+    background-repeat: no-repeat;
+    color:white;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
+    display: inline-block;
+    grid-column-start: 1;
+    line-height: 2rem;
+    color: #ffffff;
+    padding: 0 2rem;
+    width: 1400px;
+    text-align: center;
+}
+
+main > span {
+    margin-top: 5rem;
+    font-size: 1.5rem;
+}
+
 .credits {
     display: flex;
     flex-direction: row;
-    background-image: url("../images/credits.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 100vh;
@@ -26,14 +55,13 @@ div > span {
     line-height: 2.2rem;
 }
 
-h2 {
-    margin-top: 1.5rem;
-    font-size: 2rem;
+h1 {
+    font-size: 3rem;
     font-weight: 700;
     font-style: normal;
 }
 
-h2 > span {
+h1 > span {
     font-family: "Luxurious Script", cursive;
     font-size: 4rem;
     font-weight: 400;
