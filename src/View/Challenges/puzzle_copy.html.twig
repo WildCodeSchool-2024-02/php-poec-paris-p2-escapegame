@@ -1,11 +1,16 @@
 {% extends 'layout.html.twig' %} {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/challenge.css" />
-<link rel="stylesheet" href="/assets/css/anagramme.css">
+<link rel="stylesheet" href="/assets/css/puzzle.css" />
 {% endblock %} {% block content %}
-<main>
-    <h1 class='handwritten'>{{ challenge.name }}</h1>
-    <section>
-        <p>{{ challenge.instructions }}</p>
+<div class="card__outer">
+    <h2>{{ challenge.name }}</h2>
+    <div class="card__inner">
+        <div class="card__content">
+            <p>{{ challenge.instructions }}</p>
+            <form
+                class="puzzle"
+                method="post"
+                action="challenges/validation/?id={{ challenge.id }}"
+            >
                 <div class="puzzle__container" id="puzzle-container">    
                       {% set max_index = 0 %}
                       {% if challenge.level is same as('hard') %}
@@ -17,30 +22,31 @@
                       {% endif %}
                       
                       {% for index in range(1, max_index) %}           
-                        <div
-                            class="puzzle_container_piece"
+                    <div
+                        class="puzzle_container_piece"
+                        alt="Image {{ index }}"
+                        id="{{ index }}"
+                        draggable="true"
+                        ondragstart="drag(event)"
+                        ondrop="drop(event)"
+                        ondragover="allowDrop(event)"
+                    >
+                        <img
+                            src="/assets/images/challenges/{{ challenge.id }}/{{
+                                index
+                            }}.png"
                             alt="Image {{ index }}"
                             id="{{ index }}"
                             draggable="true"
                             ondragstart="drag(event)"
                             ondrop="drop(event)"
                             ondragover="allowDrop(event)"
-                        >
-                            <img
-                                src="/assets/images/challenges/{{ challenge.id }}/{{
-                                    index
-                                }}.png"
-                                alt="Image {{ index }}"
-                                id="{{ index }}"
-                                draggable="true"
-                                ondragstart="drag(event)"
-                                ondrop="drop(event)"
-                                ondragover="allowDrop(event)"
-                            />
-                        </div>
+                        />
+                    </div>
                     {% endfor %}
                 </div>
-        <div class="puzzle__solution-container">
+              
+                <div class="puzzle__solution-container">
                     {% for index in range(1, max_index) %}
                     <div
                         id="box{{ index }}"
@@ -60,22 +66,17 @@
                         ondragover="allowDrop(event)"
                     /></div>
                     {% endfor %}
-                </div>      
-        <article>
-            <form
-                class="puzzle"
-                method="post"
-                action="validation/?id={{ challenge.id }}"
-            >
+                </div>
+                </div>
+                <div class="button__container">
+                    <button type="clue" id="clue">Indice</button>
+                    <button type="submit" id="validate" disabled>
+                        Valider
+                    </button>
             </form>
-            
-        </article>
-    </section>
-    <aside>
-      <button id ='clueButton' class='clue' type="button">Indice</button>
-      <button class='validate' type="submit" form="validation">Valider</button>
-   </aside>
-</main>
+        </div>
+    </div>
+</div>
 {% endblock %} {% block javascript %}
 <script>
     let imgId = "";

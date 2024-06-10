@@ -53,3 +53,19 @@ p {
 div {
     width: auto;
 }
+
+div, p {
+    margin:0;
+}
+
+.image1 {
+    background-image: url('../images/rooms/1.png');
+}
+
+.image2 {
+    background-image: url('../images/rooms/2.png');
+}
+
+.image3 {
+    background-image: url('../images/rooms/3.png');
+}

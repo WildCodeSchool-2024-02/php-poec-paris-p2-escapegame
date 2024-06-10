@@ -1,15 +1,18 @@
-{% extends 'layout.html.twig' %} {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/puzzle.css" />
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/anagramme.css">
+<link rel="stylesheet" href="/assets/css/puzzle_test.css" />
 {% endblock %} {% block content %}
-<div class="card__outer">
-    <h2>{{ challenge.name }}</h2>
-    <div class="card__inner">
+<main>
+    <h1 class='handwritten'>{{ challenge.name }}</h1>
+    <section>
         <div class="card__content">
             <p>{{ challenge.instructions }}</p>
             <form
                 class="puzzle"
                 method="post"
                 action="challenges/validation/?id={{ challenge.id }}"
+                id='validation' id='validation'
             >
                 <div class="puzzle__container" id="puzzle-container">    
                       {% set max_index = 0 %}
@@ -57,6 +60,7 @@
                     /><input name="user_answer" type="hidden" id="user_answer"/>
                 </div>
                 {% endfor %}
+                <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
                 </div>
                 <div class="puzzle__side-container">
                     {% for index in range(1, 3) %}
@@ -68,17 +72,23 @@
                     {% endfor %}
                 </div>
                 </div>
-                <div class="button__container">
-                    <button type="clue" id="clue">Indice</button>
-                    <button type="submit" id="validate" disabled>
-                        Valider
-                    </button>
             </form>
-        </div>
-    </div>
-</div>
+    </section>
+    <aside>
+        <button id ='clueButton' class='clue' type="button">Indice</button>
+        <button class='validate' type="submit" form="validation">Valider</button>
+    </aside>
+</main>
 {% endblock %} {% block javascript %}
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const button = document.getElementById('clueButton');
+        button.addEventListener('click', () => {
+            const clueElement = document.getElementById('indice');
+            clueElement.classList.toggle('hidden');
+            clueElement.classList.toggle('visible');
+        });
+    });
     let imgId = "";
     const userSolution = [];
 
@@ -123,5 +133,8 @@
 
         button.disabled = input.value.length !== images.length;
     }
+    var roomId = {{ challenge.room_id }};
+    const body = document.getElementById('body');
+    body.classList.add(`image${ roomId }`);
 </script>
  {% endblock %}
