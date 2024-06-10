@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/challenge2.css">
 	<link rel="stylesheet" href="/assets/css/anagramme.css">
 {% endblock %}
 
@@ -31,12 +32,15 @@
 
 {% block javascript %}
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-       const button = document.getElementById('clueButton');
-       button.addEventListener('click', () => {
-           const clueElement = document.getElementById('indice');
-           clueElement.classList.toggle('hidden');
-       });
+   document.addEventListener('DOMContentLoaded', (event) => {
+      const button = document.getElementById('clueButton');
+      button.addEventListener('click', () => {
+         const clueElement = document.getElementById('indice');
+         clueElement.classList.toggle('hidden');
+      });
    });
+   var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
 </script>
 {% endblock %}
