@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block title %}
+    La Nuit du Conservateur
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/rooms/room.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <button id='myButton'>?</button>
+    <p id='redirection' class='hidden'>Alors que je rassemble les différentes parties du dessin avec précision,  un changement spectaculaire s'opère dans la pièce. La bête monstrueuse  qui me menaçait disparaît soudainement dans un nuage de fumée, laissant  tomber au sol le Collier de perles de Marie-Antoinette perdu par le conservateur. </p>
+</main>
+
+{% endblock %}
+
+{% block javascript %}
+<script> var dynamicId = {{ id }};</script>
+<script src="assets/js/room.js"></script>
+{% endblock %}

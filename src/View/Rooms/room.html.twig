@@ -1,63 +1,200 @@
-{% extends 'layout.html.twig' %} {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/room.css" />
-{% endblock %} {% block content %}
-<form method="post" action="challenges/type">
-    <img src="/assets/images/{{ room.name }}.png" id="zoom-image" />
-    <div id="zoom-zone"></div>
-    <div id="open-challenge-zone"></div>
-    <p id="description">{{ currentChallenge.description }}</p>
-    <button type="submit" id="button" disabled></button>
-</form>
-{% endblock %} {% block javascript %}
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/room.css"/>
+{% endblock %}
+{% block content %}
+	<form method="post" action="challenges/type">
+		<div id="zoom-zone"></div>
+		<div id="open-challenge-zone"></div>
+		{# <button type="submit" id="button" disabled></button> #}
+	</form>
+	<main>
+		<button id='myButton'>?</button>
+        <p id="description" class='hidden'>{{ currentChallenge.description }}</p>
+		<p id='redirection' class='hidden'>Passant la porte avec une anticipation croissante, je me retrouve dans  une pièce qui, à première vue, me semble étrangement différente de ce à  quoi je m'attendais. D'habitude bondée de visiteurs, elle est maintenant  étrangement calme. Puis, mon regard est captivé par la présence d’une  œuvre. Face à moi, éclatante dans sa solitude, se trouve la peinture  tant convoitée.</p>
+	</main>
+{% endblock %}
+{% block javascript %}
 <script>
-    let imgElement = document.getElementById("zoom-image");
-    let zoomZone = document.getElementById("zoom-zone");
-    let openChallengeZone = document.getElementById("open-challenge-zone");
 
+function displayClueBasedOnChall() {
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', () => {
+        const textElement = document.getElementById("description");
+        textElement.classList.toggle("hidden");
+        button.classList.toggle('hidden');
+    });
+}
+
+function addClassToZoomZone(classMap, challengeId) {
+    const zoomZone = document.getElementById('zoom-zone');
+    if (!zoomZone) {
+        console.error("Element with id 'zoom-zone' not found.");
+        return;
+    }
+
+    if (classMap[challengeId]) {
+        zoomZone.classList.add(classMap[challengeId].class);
+    } else {
+        console.error("Class not found for challengeId:", challengeId);
+    }
+}
+
+function addLinkToZoomZone(classMap, challengeId) {
+    const zoomZone = document.getElementById('zoom-zone');
+    if (!zoomZone) {
+        console.error("Element with id 'zoom-zone' not found.");
+        return;
+    }
+
+    if (classMap[challengeId]) {
+        const link = document.createElement('a');
+        link.href = classMap[challengeId].link;
+        link.style.display = 'block'; // Ensure the link takes up the entire width
+
+        // Clone the zoomZone content
+        const clone = zoomZone.cloneNode(true);
+        
+        // Clear the original zoomZone content
+        zoomZone.innerHTML = '';
+
+        // Append the cloned content to the link
+        link.appendChild(clone);
+
+        // Replace the original zoomZone content with the link
+        zoomZone.appendChild(link);
+    } else {
+        console.error("Class not found for challengeId:", challengeId);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     let roomId = params.get("rid");
-    
-    (function () {
-        if (1 === +roomId) {
-            zoomZone.classList.add("lobby-zoom");
-        } else if (2 === +roomId) {
-            zoomZone.classList.add("gallery-zoom");
-        } else if (3 === +roomId) {
-            zoomZone.classList.add("exhibition-zoom");
-        }
-    })();
+    let challengeId = params.get("cid");
 
-    function showText() {
-        let textElement = document.getElementById("description");
-        if (!textElement.classList.contains("visible")) {
-            textElement.classList.add("visible");
-        }
+    // Convert roomId and challengeId to integers
+    roomId = roomId ? parseInt(roomId, 10) : null;
+    challengeId = challengeId ? parseInt(challengeId, 10) : null;
+
+    const body = document.getElementById('body');
+
+    // Add classes and event listener based on roomId
+    switch (roomId) {
+        case 1:
+            displayClueBasedOnChall();
+            break;
+        case 2:
+            body.classList.add('image2');
+            displayClueBasedOnChall();
+            break;
+        case 3:
+            body.classList.add('image3');
+            displayClueBasedOnChall();
+            break;
+        default:
+            console.warn("Conditions not met for adding event listener.");
     }
 
-    function activateFormButton() {
-        let formButton = document.getElementById("button");
-        formButton.disabled = false;
-        console.log("next page");
-    }
+    const classMap = {
+        1: { class: "lobby-zoom-1", link: "http://localhost:8000/challenges?id=1" },
+        2: { class: "lobby-zoom-2", link: "http://localhost:8000/challenges?id=2" },
+        3: { class: "lobby-zoom-3", link: "http://localhost:8000/challenges?id=3" },
+        4: { class: "gallery-zoom-4", link: "http://localhost:8000/challenges?id=4" },
+        5: { class: "gallery-zoom-5", link: "http://localhost:8000/challenges?id=5" },
+        6: { class: "gallery-zoom-6", link: "http://localhost:8000/challenges?id=6" },
+        7: { class: "exhibition-zoom-7", link: "http://localhost:8000/challenges?id=7" },
+        8: { class: "exhibition-zoom-8", link: "http://localhost:8000/challenges?id=8" },
+        9: { class: "exhibition-zoom-9", link: "http://localhost:8000/challenges?id=9" }
+    };
 
-    zoomZone.addEventListener("click", function () {
-        showText();
-        zoomZone.style.visibility = "hidden";
-        if (1 === +roomId) {
-            imgElement.classList.add("lobby-zoomed");
-            openChallengeZone.classList.add("lobby-to-challenge");
-        } else if (2 === +roomId) {
-            imgElement.classList.add("gallery-zoomed");
-            openChallengeZone.classList.add("gallery-to-challenge");
-        } else if (3 === +roomId) {
-            imgElement.classList.add("exhibition-zoomed");
-            openChallengeZone.classList.add("exhibition-to-challenge");
-        }
-    });
+    addClassToZoomZone(classMap, challengeId);
+    addLinkToZoomZone(classMap, challengeId);
+});
 
-    openChallengeZone.addEventListener("click", function () {
-        activateFormButton();
-    });
-</script>
+// let imgElement = document.getElementById("zoom-image");
+// let zoomZone = document.getElementById("zoom-zone");
+// let openChallengeZone = document.getElementById("open-challenge-zone");
+
+// const url = new URL(window.location.href);
+// const params = new URLSearchParams(url.search);
+// let roomId = params.get("rid");
+// let challengeId = params.get("cid");
+// let imgElement = document.getElementById("zoom-image");
+// let zoomZone = document.getElementById("zoom-zone");
+// let openChallengeZone = document.getElementById("open-challenge-zone");
+
+// if (challengeId === 1) {
+//     zoomZone.classList.add("lobby-zoom");
+//     // zoomZone.style.visibility = "hidden";
+//     // imgElement.classList.add("lobby-zoomed");
+//     // openChallengeZone.classList.add("lobby-to-challenge")
+// }
+
+
+
+// const button = document.getElementById('myButton');
+// button.addEventListener('click', () => {
+//     const text = document.getElementById('redirection');
+//     button.classList.toggle('hidden');
+//     text.classList.toggle('hidden');
+//     text.classList.toggle('visible');
+// });;
+
+// const text = document.getElementById('redirection');
+// const body = document.getElementById('body');
+
+//     } else if (roomId === 1) {
+//         text.addEventListener('click', () => {
+//             var futureRoom = roomId + 1;
+//             window.location = `http://localhost:8000/room?rid=${futureRoom}&cid=1`;
+//         });
+//     } else if (roomId === 2) {
+//         body.classList.add('image2');
+//         text.addEventListener('click', () => {
+//             var futureRoom = roomId + 1;
+//             window.location = `http://localhost:8000/room?rid=${futureRoom}&cid=1`;
+//         });
+//     } else if (roomId === 3) {
+//         body.classList.add('image3');
+//         text.addEventListener('click', () => {
+//             window.location = `http://localhost:8000/outro`;
+//         });
+//     } else {
+//         console.warn("Unknown roomId:", roomId);
+//     }
+// });
+
+
+// (function () {
+//     if (1 === +roomId) {
+//         zoomZone.classList.add("lobby-zoom");
+//     } else if (2 === +roomId) {
+//         zoomZone.classList.add("gallery-zoom");
+//     } else if (3 === +roomId) {
+//         zoomZone.classList.add("exhibition-zoom");
+//     }
+// })();
+
+
+//     zoomZone.addEventListener("click", function () {
+//         showText();
+//         zoomZone.style.visibility = "hidden";
+//         if (1 === +roomId) {
+//             imgElement.classList.add("lobby-zoomed");
+//             openChallengeZone.classList.add("lobby-to-challenge");
+//         } else if (2 === +roomId) {
+//             imgElement.classList.add("gallery-zoomed");
+//             openChallengeZone.classList.add("gallery-to-challenge");
+//         } else if (3 === +roomId) {
+//             imgElement.classList.add("exhibition-zoomed");
+//             openChallengeZone.classList.add("exhibition-to-challenge");
+//         }
+//     });
+
+//     openChallengeZone.addEventListener("click", function () {
+//         activateFormButton();
+// });
+	</script>
 {% endblock %}

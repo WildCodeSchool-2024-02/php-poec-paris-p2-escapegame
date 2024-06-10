@@ -11,8 +11,10 @@ use App\Controller\HomeController;
 
 return [
     '' => ['HomeController', 'index',],
-    'credits' => ['CreditsController', 'index',],
+    'intro' => ['RoomController', 'showIntro',],
     'room' => ['RoomController', 'show', ['rid', 'cid']],
     'challenges' => ['ChallengeController', 'show', ['id']],
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],
+    'outro' => ['RoomController', 'showOutro',],
+    'credits' => ['CreditsController', 'index',],
 ];
