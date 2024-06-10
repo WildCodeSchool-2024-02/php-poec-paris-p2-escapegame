@@ -1,23 +1,25 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/challenge2.css">
 	<link rel="stylesheet" href="/assets/css/colors.css">
 {% endblock %}
 
 {% block content %}
 <main>
-	<h1><span class='handwritten'>{{ name }}</span></h1>
+	<h1 class='handwritten'>{{ challenge.name }}</h1>
     <section>
         <div>
             <img src='/assets/images/challenges/3/cariatides.jpg'>
+            <p>*ecris les couleurs en entier avec un espace entre elles</p>
         </div>
         <article>
-            <p>{{ instructions }}</p>
-            <form method='post' action="/challenges/validation" id='validation'>
+            <p>{{ challenge.instructions }}</p>
+            <form method='post' action="/challenges/validation/?id={{ challenge.id }}" id='validation' id='validation'>
                 <input type="hidden" value="{{ id }}">
                 <input type="text" name='user_answer'></input>
             </form>
-            <p><i id='indice' class='hidden'>{{ clue }}</i></p>
+            <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
         </article>
    </section>
    <aside>
@@ -38,5 +40,8 @@
            clueElement.classList.toggle('visible');
        });
    });
+   var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
 </script>
 {% endblock %}

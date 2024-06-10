@@ -1,0 +1,167 @@
+[33maa03be6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mS2US08_create_rooms[m[33m, [m[1;31morigin/S2US08_create_rooms[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33maa03be6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mS2US08_create_rooms[m[33m, [m[1;31morigin/S2US08_create_rooms[m[33m)[m HEAD@{1}: checkout: moving from S2US08_link_room_with_chall to S2US08_create_rooms
+[33m25aa6ea[m[33m ([m[1;31morigin/S2US08_link_room_with_chall[m[33m, [m[1;32mS2US08_link_room_with_chall[m[33m)[m HEAD@{2}: checkout: moving from S2US08_create_rooms to S2US08_link_room_with_chall
+[33maa03be6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mS2US08_create_rooms[m[33m, [m[1;31morigin/S2US08_create_rooms[m[33m)[m HEAD@{3}: checkout: moving from S2US08_link_room_with_chall to S2US08_create_rooms
+[33m25aa6ea[m[33m ([m[1;31morigin/S2US08_link_room_with_chall[m[33m, [m[1;32mS2US08_link_room_with_chall[m[33m)[m HEAD@{4}: checkout: moving from S2US08_create_rooms to S2US08_link_room_with_chall
+[33maa03be6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mS2US08_create_rooms[m[33m, [m[1;31morigin/S2US08_create_rooms[m[33m)[m HEAD@{5}: reset: moving to HEAD
+[33maa03be6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mS2US08_create_rooms[m[33m, [m[1;31morigin/S2US08_create_rooms[m[33m)[m HEAD@{6}: pull: Fast-forward
+[33m14a26cd[m HEAD@{7}: checkout: moving from S2_fixed_bugs to S2US08_create_rooms
+[33mb8cdddd[m[33m ([m[1;31morigin/S2_fixed_bugs[m[33m, [m[1;32mS2_fixed_bugs[m[33m)[m HEAD@{8}: commit: fixed bugs
+[33m15e804d[m HEAD@{9}: commit: css credits done
+[33md481010[m HEAD@{10}: commit: functionnal product
+[33m788596a[m HEAD@{11}: commit: changed assets
+[33m00ba0b3[m HEAD@{12}: commit: added background image to challenge and fixed bugs
+[33m96234de[m HEAD@{13}: pull: Merge made by the 'ort' strategy.
+[33mf09d331[m HEAD@{14}: pull: Merge made by the 'ort' strategy.
+[33m54a1446[m HEAD@{15}: commit: added background to challenge
+[33mef373e1[m HEAD@{16}: commit: give access
+[33m25aa6ea[m[33m ([m[1;31morigin/S2US08_link_room_with_chall[m[33m, [m[1;32mS2US08_link_room_with_chall[m[33m)[m HEAD@{17}: checkout: moving from S2US08_link_room_with_chall to S2_fixed_bugs
+[33m25aa6ea[m[33m ([m[1;31morigin/S2US08_link_room_with_chall[m[33m, [m[1;32mS2US08_link_room_with_chall[m[33m)[m HEAD@{18}: commit: fixed issue, create result page and fixed bug link to redirect
+[33m14a26cd[m HEAD@{19}: checkout: moving from S2US08_create_rooms to S2US08_link_room_with_chall
+[33m14a26cd[m HEAD@{20}: checkout: moving from dev to S2US08_create_rooms
+[33mf1f5a53[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdev[m[33m)[m HEAD@{21}: checkout: moving from S2US08_create_rooms to dev
+[33m14a26cd[m HEAD@{22}: commit: added link to chall to zone
+[33mf35131e[m HEAD@{23}: commit: added clue button and clickable zone
+[33mc3c557d[m HEAD@{24}: checkout: moving from S2US11_create_challenge_colors to S2US08_create_rooms
+[33mf2dd6a8[m[33m ([m[1;31morigin/S2US11_create_challenge_colors[m[33m, [m[1;32mS2US11_create_challenge_colors[m[33m)[m HEAD@{25}: commit: updated colors according to merge
+[33mf1f5a53[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdev[m[33m)[m HEAD@{26}: merge dev: Fast-forward
+[33m988b2ad[m HEAD@{27}: checkout: moving from dev to S2US11_create_challenge_colors
+[33mf1f5a53[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdev[m[33m)[m HEAD@{28}: pull: Fast-forward
+[33m988b2ad[m HEAD@{29}: checkout: moving from S2US11_create_challenge_colors to dev
+[33m988b2ad[m HEAD@{30}: merge dev: Fast-forward
+[33m482d588[m HEAD@{31}: checkout: moving from S2US08_create_rooms to S2US11_create_challenge_colors
+[33mc3c557d[m HEAD@{32}: commit: changed zoom
+[33mbf4d339[m HEAD@{33}: checkout: moving from S1US03_create_challenge_anagramme to S2US08_create_rooms
+[33m2f11ac2[m[33m ([m[1;31morigin/S1US03_create_challenge_anagramme[m[33m, [m[1;32mS1US03_create_challenge_anagramme[m[33m)[m HEAD@{34}: commit (merge): fixed conflict with dev
+[33m78e7520[m HEAD@{35}: checkout: moving from dev to S1US03_create_challenge_anagramme
+[33m988b2ad[m HEAD@{36}: pull origin dev: Fast-forward
+[33m5afd165[m HEAD@{37}: checkout: moving from S1US03_create_challenge_anagramme to dev
+[33m78e7520[m HEAD@{38}: commit: remove useless visible class
+[33m34d4449[m HEAD@{39}: checkout: moving from dev to S1US03_create_challenge_anagramme
+[33m5afd165[m HEAD@{40}: checkout: moving from S2US11_create_challenge_colors to dev
+[33m482d588[m HEAD@{41}: commit (merge): fixed issue due to merge
+[33ma86cfb0[m HEAD@{42}: pull: Fast-forward
+[33m6be2b27[m HEAD@{43}: checkout: moving from dev to S2US11_create_challenge_colors
+[33m5afd165[m HEAD@{44}: checkout: moving from S2US08_create_rooms to dev
+[33mbf4d339[m HEAD@{45}: commit (merge): made the zoom and redirect work
+[33m2fb43b2[m HEAD@{46}: checkout: moving from dev to S2US08_create_rooms
+[33m5afd165[m HEAD@{47}: pull origin dev: Fast-forward
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{48}: checkout: moving from S1US03_create_challenge_anagramme to dev
+[33m34d4449[m HEAD@{49}: commit (merge): resolved conflict due to merge
+[33mbff3c20[m HEAD@{50}: commit (merge): resolved conflict due to merge
+[33mbd875eb[m HEAD@{51}: checkout: moving from S2US06_image_zoom to S1US03_create_challenge_anagramme
+[33mdffbb4c[m[33m ([m[1;32mS2US06_image_zoom[m[33m)[m HEAD@{52}: checkout: moving from dev to S2US06_image_zoom
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{53}: checkout: moving from origin/S2US06_image_zoom to dev
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{54}: checkout: moving from dev to origin/S2US06_image_zoom
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{55}: checkout: moving from S2US11_create_challenge_colors to dev
+[33m6be2b27[m HEAD@{56}: commit: added colors challenge
+[33mbd875eb[m HEAD@{57}: checkout: moving from S1US03_create_challenge_anagramme to S2US11_create_challenge_colors
+[33mbd875eb[m HEAD@{58}: checkout: moving from dev to S1US03_create_challenge_anagramme
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{59}: checkout: moving from S2US08_create_rooms to dev
+[33m2fb43b2[m HEAD@{60}: commit: fixed bug menu
+[33mf9985b8[m HEAD@{61}: commit (merge): resolved conflicts
+[33m6bc66a7[m HEAD@{62}: checkout: moving from dev to S2US08_create_rooms
+[33m9f87a97[m[33m ([m[1;32morigin/S2US06_image_zoom[m[33m)[m HEAD@{63}: pull origin dev: Fast-forward
+[33m1b6987e[m HEAD@{64}: checkout: moving from S2US08_create_rooms to dev
+[33m6bc66a7[m HEAD@{65}: commit: removed useless username
+[33m44ca55f[m HEAD@{66}: commit: localhost:8000
+[33m56916f4[m HEAD@{67}: commit: added path between rooms
+[33m4bd98eb[m HEAD@{68}: commit (merge): finished intro
+[33m3880607[m HEAD@{69}: checkout: moving from S1US03_create_challenge_anagramme to S2US08_create_rooms
+[33mbd875eb[m HEAD@{70}: commit: added line break
+[33m789a49f[m HEAD@{71}: commit (merge): added clue
+[33mf23010f[m HEAD@{72}: checkout: moving from dev to S1US03_create_challenge_anagramme
+[33m1b6987e[m HEAD@{73}: pull: Fast-forward
+[33m040c595[m HEAD@{74}: checkout: moving from S1US03_create_challenge_anagramme to dev
+[33mf23010f[m HEAD@{75}: commit: remove useless variable
+[33m84cf49b[m HEAD@{76}: checkout: moving from S1US01_add_db_values to S1US03_create_challenge_anagramme
+[33m24795dd[m[33m ([m[1;31morigin/S1US01_add_db_values[m[33m, [m[1;32mS1US01_add_db_values[m[33m)[m HEAD@{77}: merge dev: Merge made by the 'ort' strategy.
+[33mb2c9045[m HEAD@{78}: checkout: moving from S1US03_create_challenge_anagramme to S1US01_add_db_values
+[33m84cf49b[m HEAD@{79}: commit: changed css
+[33m9bc3514[m HEAD@{80}: commit (merge): resolved conflict with dev
+[33ma490bf4[m HEAD@{81}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m8d007f3[m[33m ([m[1;31morigin/S1US05_add_challenge_assets[m[33m, [m[1;32mS1US05_add_challenge_assets[m[33m)[m HEAD@{82}: commit (merge): fixed conflict with dev
+[33m20aa901[m HEAD@{83}: checkout: moving from S2US07_create_menu to S1US05_add_challenge_assets
+[33mc73979e[m[33m ([m[1;32mS2US07_create_menu[m[33m)[m HEAD@{84}: commit (merge): Merge branch 'dev' into S2US07_create_menu
+[33m8031a91[m HEAD@{85}: checkout: moving from dev to S2US07_create_menu
+[33m040c595[m HEAD@{86}: pull origin dev: Fast-forward
+[33m37ddc00[m HEAD@{87}: checkout: moving from S2US07_create_menu to dev
+[33m8031a91[m HEAD@{88}: checkout: moving from dev to S2US07_create_menu
+[33m37ddc00[m HEAD@{89}: checkout: moving from S1US03_create_challenge_anagramme to dev
+[33ma490bf4[m HEAD@{90}: commit: added challenges assets
+[33m089e351[m HEAD@{91}: checkout: moving from S2US08_create_rooms to S1US03_create_challenge_anagramme
+[33m3880607[m HEAD@{92}: commit: added all rooms and outro
+[33m37ddc00[m HEAD@{93}: checkout: moving from dev to S2US08_create_rooms
+[33m37ddc00[m HEAD@{94}: checkout: moving from S2US07_create_menu to dev
+[33m8031a91[m HEAD@{95}: commit: added fonts to layout
+[33maf4d1ee[m HEAD@{96}: commit: removed unused room pics
+[33mf21f9d3[m HEAD@{97}: commit: created menu
+[33m37ddc00[m HEAD@{98}: Branch: renamed refs/heads/S2US05_create_menu to refs/heads/S2US07_create_menu
+[33m37ddc00[m HEAD@{100}: Branch: renamed refs/heads/S2US07_create_rooms to refs/heads/S2US05_create_menu
+[33m37ddc00[m HEAD@{102}: checkout: moving from dev to S2US07_create_rooms
+[33m37ddc00[m HEAD@{103}: pull: Fast-forward
+[33m225e48b[m HEAD@{104}: checkout: moving from S1US01_create_challenge_mvc to dev
+[33m58a5ece[m[33m ([m[1;31morigin/S1US01_create_challenge_mvc[m[33m, [m[1;32mS1US01_create_challenge_mvc[m[33m)[m HEAD@{105}: commit: removed array and useless folder
+[33m0aeaa50[m HEAD@{106}: checkout: moving from S1US03_create_challenge_anagramme to S1US01_create_challenge_mvc
+[33m089e351[m HEAD@{107}: commit: updated file changes
+[33m775e7be[m HEAD@{108}: commit: changed according to US01
+[33m50573e3[m HEAD@{109}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m20aa901[m HEAD@{110}: pull: Merge made by the 'ort' strategy.
+[33m6bd3573[m HEAD@{111}: commit: change folder name according to PR
+[33m99110c0[m HEAD@{112}: checkout: moving from S1US01_create_challenge_mvc to S1US05_add_challenge_assets
+[33m0aeaa50[m HEAD@{113}: commit: made changes according to PR
+[33ma9c060f[m HEAD@{114}: checkout: moving from S1US01_add_db_values to S1US01_create_challenge_mvc
+[33mb2c9045[m HEAD@{115}: commit: added name and clue to db
+[33ma9c060f[m HEAD@{116}: checkout: moving from S1US01_create_challenge_mvc to S1US01_add_db_values
+[33ma9c060f[m HEAD@{117}: pull: Fast-forward
+[33m5631afb[m HEAD@{118}: checkout: moving from S1US05_add_challenge_assets to S1US01_create_challenge_mvc
+[33m99110c0[m HEAD@{119}: checkout: moving from dev to S1US05_add_challenge_assets
+[33m225e48b[m HEAD@{120}: checkout: moving from S1US05_add_challenge_assets to dev
+[33m99110c0[m HEAD@{121}: checkout: moving from S1US03_create_challenge_anagramme to S1US05_add_challenge_assets
+[33m50573e3[m HEAD@{122}: commit: optimised controller
+[33m599f125[m HEAD@{123}: commit: changed controller
+[33m2e3dd4f[m HEAD@{124}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m99110c0[m HEAD@{125}: commit: changed composer lock
+[33m8fa5dd0[m HEAD@{126}: checkout: moving from S1US01_create_challenge_mvc to S1US05_add_challenge_assets
+[33m5631afb[m HEAD@{127}: commit: changed composer lock
+[33m9ba3085[m HEAD@{128}: checkout: moving from S1US03_create_challenge_anagramme to S1US01_create_challenge_mvc
+[33m2e3dd4f[m HEAD@{129}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m8fa5dd0[m HEAD@{130}: checkout: moving from S1US01_create_challenge_mvc to S1US05_add_challenge_assets
+[33m9ba3085[m HEAD@{131}: commit: deleted unrelated image
+[33m8dd7a84[m HEAD@{132}: checkout: moving from S1US05_add_challenge_assets to S1US01_create_challenge_mvc
+[33m8fa5dd0[m HEAD@{133}: checkout: moving from S1US03_create_challenge_anagramme to S1US05_add_challenge_assets
+[33m2e3dd4f[m HEAD@{134}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m8fa5dd0[m HEAD@{135}: checkout: moving from S1US03_create_challenge_anagramme to S1US05_add_challenge_assets
+[33m2e3dd4f[m HEAD@{136}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m8fa5dd0[m HEAD@{137}: checkout: moving from S1US03_create_challenge_anagramme to S1US05_add_challenge_assets
+[33m2e3dd4f[m HEAD@{138}: commit: changement method name
+[33mccae5a0[m HEAD@{139}: commit: added verification to chall
+[33mf20a5db[m HEAD@{140}: checkout: moving from S1US05_add_challenge_assets to S1US03_create_challenge_anagramme
+[33m8fa5dd0[m HEAD@{141}: commit: ordered challenge_1 image
+[33m6a3e874[m HEAD@{142}: commit: added assets in view and images
+[33m8dd7a84[m HEAD@{143}: checkout: moving from S1US01_create_challenge_mvc to S1US05_add_challenge_assets
+[33m8dd7a84[m HEAD@{144}: checkout: moving from dev to S1US01_create_challenge_mvc
+[33m225e48b[m HEAD@{145}: checkout: moving from S1US05_add_challenge_assets to dev
+[33m225e48b[m HEAD@{146}: checkout: moving from dev to S1US05_add_challenge_assets
+[33m225e48b[m HEAD@{147}: checkout: moving from S1US05_add_challenge_assets to dev
+[33m80932a7[m HEAD@{148}: commit: delete
+[33mf20a5db[m HEAD@{149}: checkout: moving from S1US03_create_challenge_anagramme to S1US05_add_challenge_assets
+[33mf20a5db[m HEAD@{150}: commit: added bdd elements to anagramme render
+[33m18adfde[m HEAD@{151}: commit: added assets to anagramme render
+[33m5898305[m HEAD@{152}: checkout: moving from S1US05_update_challenge_mvc to S1US03_create_challenge_anagramme
+[33m173109a[m HEAD@{153}: commit: delete
+[33mc619438[m HEAD@{154}: commit: delete
+[33m8dd7a84[m HEAD@{155}: checkout: moving from S1US01_create_challenge_mvc to S1US05_update_challenge_mvc
+[33m8dd7a84[m HEAD@{156}: checkout: moving from S1US03_create_challenge_anagramme to S1US01_create_challenge_mvc
+[33m5898305[m HEAD@{157}: commit: added view to custom challenge type
+[33maf5154f[m HEAD@{158}: commit: added view to custom challenge type
+[33m8dd7a84[m HEAD@{159}: checkout: moving from S1US01_create_challenge_mvc to S1US03_create_challenge_anagramme
+[33m8dd7a84[m HEAD@{160}: checkout: moving from dev to S1US01_create_challenge_mvc
+[33m225e48b[m HEAD@{161}: checkout: moving from S1US01_create_challenge_mvc to dev
+[33m8dd7a84[m HEAD@{162}: checkout: moving from S1US03_create_challenge_anagramme to S1US01_create_challenge_mvc
+[33m8dd7a84[m HEAD@{163}: checkout: moving from S1US01_create_challenge_mvc to S1US03_create_challenge_anagramme
+[33m8dd7a84[m HEAD@{164}: commit: added challenge layout distributor
+[33m655ad95[m HEAD@{165}: commit: added select by id
+[33m7c2e43e[m HEAD@{166}: commit: created challenge mvc and fixed db with micka
+[33m225e48b[m HEAD@{167}: checkout: moving from dev to S1US01_create_challenge_mvc
+[33m225e48b[m HEAD@{168}: clone: from github.com:WildCodeSchool-2024-02/php-poec-paris-p2-escapegame.git
