@@ -39,12 +39,12 @@ section {
 
 div {
     width: 50%;
+    margin: auto;
 }
 
 img {
     width: 100%;
     border-radius: 25px;
-    margin-top: 70px ;
 }
 
 article {
@@ -52,6 +52,7 @@ article {
     flex-direction: column;
     width: 50%;
     text-align: center;
+    
 }
 
 aside {
@@ -67,6 +68,7 @@ strong {
 
 p {
     padding: 10px;
+    margin: auto;
 }
 
 form {

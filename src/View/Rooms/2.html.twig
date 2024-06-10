@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block title %}
+    La Nuit du Conservateur
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/rooms/room.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <button id='myButton'>?</button>
+    <p id='redirection' class='hidden'>À mesure que le puzzle se résout sous mes doigts, le tableau lui-même  semble se métamorphoser, révélant un passage secret dissimulé derrière  lui. Un frisson d'excitation parcourt mes veines à la perspective de  l'inconnu qui se dévoile. Sans hésiter, je m'empresse de m’y engouffrer</p>
+</main>
+{% endblock %}
+
+{% block javascript %}
+<script> var dynamicId = {{ id }};</script>
+<script src="assets/js/room.js"></script>
+{% endblock %}

@@ -6,18 +6,18 @@
 
 {% block content %}
 <main>
-	<h1><span class='handwritten'>{{ name }}</span></h1>
+	<h1><span class='handwritten'>{{ challenge.name }}</span></h1>
     <section>
         <div>
             <img src='/assets/images/challenges/3/cariatides.jpg'>
         </div>
         <article>
-            <p>{{ instructions }}</p>
+            <p>{{ challenge.instructions }}</p>
             <form method='post' action="/challenges/validation" id='validation'>
                 <input type="hidden" value="{{ id }}">
                 <input type="text" name='user_answer'></input>
             </form>
-            <p><i id='indice' class='hidden'>{{ clue }}</i></p>
+            <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
         </article>
    </section>
    <aside>

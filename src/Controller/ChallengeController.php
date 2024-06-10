@@ -17,7 +17,6 @@ class ChallengeController extends AbstractController
         $this->saveManager = new SaveManager();
     }
 
-
     /**
      * Show informations for a specific challenge
      */
@@ -29,7 +28,6 @@ class ChallengeController extends AbstractController
             'challenge' => $challenge,
         ]);
     }
-
 
     /**
      * Validate the array, calls saveProgress and if necessary prepareUserSolution
