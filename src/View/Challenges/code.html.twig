@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/code.css">
+{% endblock %}
     <title>Document</title>
 </head>
 <body>
-    <h1>Challenge type = Code</h1>
-    bonjou
+{% block content %}
+    <h1><span class='handwritten'>{{ challenge.type }}</span></h1>
+
+  <div style="color: white; font-size: 18px; text-align: center;">
+    {{ challenge.description }}
+</div>
+    
+    <section>
+      <div>
+         {% include 'Assets/text_id_' ~ challenge.id ~'.html.twig' %}
+      </div>
+      <article>
+         <p>{{ challenge.instructions }}</p>
+         {% include 'Assets/wordplay_id_' ~ challenge.id ~'.html.twig' %}
+         <form method='post' action="validation/?id={{ challenge.id }}" id='validation'>
+            <input type="hidden" value="{{ challenge.id }}">
+            <input type="text" name='user_answer'></input>
+         </form>
+         <p><i id='indice' class='hidden'>{{ challenge.clue }}</i></p>
+      </article>
+   </section>
+      <aside>
+      <button id ='clueButton' class='clue' type="button">Indice</button>
+      <button class='validate' type="submit" form="validation">Valider</button>
+   </aside>
+    
+{% endblock %}
+
+
 </body>
 </html>
