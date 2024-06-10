@@ -8,13 +8,13 @@ use App\Model\SaveManager;
 class ChallengeController extends AbstractController
 {
     private ChallengeManager $challengeManager;
-    private SaveManager $saveManager;
+    // private SaveManager $saveManager;
 
     public function __construct()
     {
         parent::__construct();
         $this->challengeManager = new ChallengeManager();
-        $this->saveManager = new SaveManager();
+        //$this->saveManager = new SaveManager();
     }
 
     /**

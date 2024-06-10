@@ -10,18 +10,18 @@
     {% if isCorrect %}
         {% if challenge.id == 9 %}
             {% set redirectUrl = '/outro' %}
+        {# {% elseif challenge.id % 3 == 0 %}
+            {% set rediredUrl = "/room?rid=" ~ challenge.room_id %} #}
         {% else %}
             {% set redirectUrl ="/room?rid=" ~ nextRoomId ~ "&cid=" ~ (challenge.id + 1) %}
     {% endif %}
-    <h1>Félicitations !</h1>
-    <form method="post" action= {{ redirectUrl }}>
-        <button type="submit">Prochain challenge</button>
-    </form>
+    <main id='next'>
+        <p id='text'>Parfait, un pas de plus vers la reussite</p>
+    </main>
     {% else %}
-    <h1>Perdu</h1>
-    <form method="post" action="/challenges?id={{ challenge.id }}">
-        <button type="submit">Rejouer</button>
-    </form>
+    <main id='next'>
+        <p id='text'>Cette solution ne me mene nul part je devrais me repencher dessus</p>
+    </main>
     {% endif %}
 </main>
 {% endblock %}
@@ -29,7 +29,12 @@
 {% block javascript %}
 <script>
 var roomId = {{ challenge.room_id }};
+var nextChallenge = {{ challenge.id + 1 }}
    const body = document.getElementById('body');
    body.classList.add(`image${ roomId }`);
+var links = document.getElementById("text");
+    links.onclick = function() {
+         window.location = `http://localhost:8000/room?rid=${roomId}&cid=${nextChallenge}`;
+    };
 </script>
 {% endblock %}
