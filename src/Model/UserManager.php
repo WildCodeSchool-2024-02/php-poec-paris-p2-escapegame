@@ -6,14 +6,14 @@ class UserManager extends AbstractManager
 {
     public const TABLE = 'user';
 
-    public function userExists($username, $email)
+    public function exists($email)
     {
-        $statement = $this->pdo->prepare("SELECT COUNT(*) FROM " . static::TABLE . " WHERE name = ? OR email = ?");
-        $statement->execute([$username, $email]);
+        $statement = $this->pdo->prepare("SELECT COUNT(*) FROM " . static::TABLE . " WHERE email = ?");
+        $statement->execute([$email]);
         return $statement->fetchColumn() > 0;
     }
 
-    public function save(string $name, string $email, string $password)
+    public function insert(string $name, string $email, string $password)
     {
         $statement = $this->pdo->prepare("INSERT INTO " . static::TABLE . " (
             name, 
