@@ -203,6 +203,10 @@ p {
     background-image: url('/assets/images/rooms/3.png');
 }
 
+.error_img {
+    background-image: url('/assets/images/error.jpg');
+}
+
 .belphegor {
     background-image: url('/assets/images/challenges/9/belphegor.png');
     opacity: 10%;
