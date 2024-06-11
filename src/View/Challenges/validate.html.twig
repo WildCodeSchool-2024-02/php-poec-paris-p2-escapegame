@@ -34,7 +34,7 @@ var nextChallenge = {{ challenge.id + 1 }}
    body.classList.add(`image${ roomId }`);
 var links = document.getElementById("text");
     links.onclick = function() {
-         window.location = `http://localhost:8000/room?rid=${roomId}&cid=${nextChallenge}`;
+        window.location = `http://localhost:8000/room?rid=${roomId}&cid=${nextChallenge}`;
     };
 </script>
 {% endblock %}
