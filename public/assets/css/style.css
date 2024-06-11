@@ -44,13 +44,6 @@ button {
     border-radius: 40px;
 }
 
-button:hover,
-button:active {
-    height: 4.5rem;
-    width: 8.5rem;
-    transition: 0.5s;
-}
-
 button#validate {
     background-color: #f4b659;
 }

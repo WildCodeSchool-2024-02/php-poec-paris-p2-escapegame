@@ -14,12 +14,12 @@
         </p>
     </span>
 </aside>
-<form method="POST" action="{{ formAction }}">
+<form method="POST" action="">
     {% block formContent %} 
-    {% if formAction == 'register/process' %} 
+    {% if formAction == 'register' %} 
     {% include
     'Assets/_register_form_content.html.twig' %} 
-    {% elseif formAction == '/intro'%}
+    {% elseif formAction == 'login'%}
     {% include 'Assets/_login_form_content.html.twig' %}
     {% endif %}
     {% endblock%}
