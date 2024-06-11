@@ -1,14 +1,41 @@
-{% extends 'layout.html.twig' %} 
-{% block content %} 
-{% if isCorrect %}
-<form method="post" action="/home">
-    <h1>Vous avez gagné !</h1>
-    <button type="submit">Prochain challenge</button>
-</form>
-{% else %}
-<form method="post" action="/challenges/show?id={{ challenge.id }}">
-    <h1>Perdu</h1>
-    <button type="submit">Rejouer</button>
-</form>
-{% endif %}
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/room.css">
+    <link rel="stylesheet" href="/assets/css/result.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    {% if isCorrect %}
+        {% if challenge.id == 3 %}
+            {% set redirectText = "Je me précipite à travers la porte, laissant derrière moi l'anticipation croissante." %}
+            {% set redirectUrl = "/room?rid=2&cid=4" %}
+        {% elseif challenge.id == 6 %}
+            {% set redirectText = "Le tableau dévoile un passage secret. Sans hésiter, je m'y engouffre." %}
+            {% set redirectUrl = "/room?rid=3&cid=7" %}
+        {% elseif challenge.id == 9 %}
+            {% set redirectText = "En assemblant les pièces, la pièce change. La bête disparaît, révélant le Collier de perles." %}
+            {% set redirectUrl = '/outro' %}
+        {% else %}
+            {% set redirectUrl ="/room?rid=" ~ nextRoomId ~ "&cid=" ~ (challenge.id + 1) %}
+            {% set redirectText = "Parfait, un pas de plus vers la réussite" %}
+    {% endif %}
+    <form method="post" action= {{ redirectUrl }}>
+        <input type="submit" value="{{ redirectText }}">
+    </form>
+    {% else %}
+    <form method="post" action="/challenges?id={{ challenge.id }}">
+        <input type="submit" value="Cette solution ne me mène nulle part, je devrais me repencher dessus">
+    </form>
+    {% endif %}
+</main>
+{% endblock %}
+
+{% block javascript %}
+<script>
+var roomId = {{ challenge.room_id }};
+   const body = document.getElementById('body');
+   body.classList.add(`image${ roomId }`);
+</script>
 {% endblock %}

@@ -20,4 +20,19 @@ class RoomController extends AbstractController
             'currentChallenge' => $currentChallenge,
         ]);
     }
+     /**
+     * Show intro room
+     */
+    public function showIntro(): string
+    {
+        return $this->twig->render('Rooms/intro.html.twig');
+    }
+
+    /**
+     * Show outro room
+     */
+    public function showOutro(): string
+    {
+        return $this->twig->render('Rooms/outro.html.twig');
+    }
 }

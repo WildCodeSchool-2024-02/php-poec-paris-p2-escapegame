@@ -1,5 +1,5 @@
 body {
-    background-image: url('../../images/rooms/intro.png');
+    background-image: url('/assets/images/rooms/intro.png');
     background-size: cover ;
     background-repeat: no-repeat;
     color:white;
@@ -36,5 +36,5 @@ main {
 }
 
 .outro {
-    background-image: url('../../images/rooms/outro.png');
+    background-image: url('/assets/images/rooms/outro.png');
 }
