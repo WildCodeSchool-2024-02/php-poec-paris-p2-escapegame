@@ -25,6 +25,7 @@ main {
     margin-bottom: 15px;
     font-size: 2rem;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .hidden {

@@ -5,13 +5,10 @@
 {% block content %}
 	<form method="post" action="challenges/type">
 		<div id="zoom-zone"></div>
-		<div id="open-challenge-zone"></div>
-		{# <button type="submit" id="button" disabled></button> #}
 	</form>
 	<main>
 		<button id='myButton'>?</button>
         <p id="description" class='hidden'>{{ currentChallenge.description }}</p>
-		<p id='redirection' class='hidden'>Passant la porte avec une anticipation croissante, je me retrouve dans  une pièce qui, à première vue, me semble étrangement différente de ce à  quoi je m'attendais. D'habitude bondée de visiteurs, elle est maintenant  étrangement calme. Puis, mon regard est captivé par la présence d’une  œuvre. Face à moi, éclatante dans sa solitude, se trouve la peinture  tant convoitée.</p>
 	</main>
 {% endblock %}
 {% block javascript %}
@@ -69,18 +66,17 @@ function addLinkToZoomZone(classMap, challengeId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const zoomZone = document.getElementById('zoom-zone');
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     let roomId = params.get("rid");
     let challengeId = params.get("cid");
 
-    // Convert roomId and challengeId to integers
     roomId = roomId ? parseInt(roomId, 10) : null;
     challengeId = challengeId ? parseInt(challengeId, 10) : null;
 
     const body = document.getElementById('body');
 
-    // Add classes and event listener based on roomId
     switch (roomId) {
         case 1:
             displayClueBasedOnChall();
@@ -92,11 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
         case 3:
             body.classList.add('image3');
             displayClueBasedOnChall();
+            if (challengeId === 9) {
+                zoomZone.classList.add('belphegor');
+            };
             break;
         default:
             console.warn("Conditions not met for adding event listener.");
     }
-
     const classMap = {
         1: { class: "lobby-zoom-1", link: "http://localhost:8000/challenges?id=1" },
         2: { class: "lobby-zoom-2", link: "http://localhost:8000/challenges?id=2" },
@@ -108,9 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
         8: { class: "exhibition-zoom-8", link: "http://localhost:8000/challenges?id=8" },
         9: { class: "exhibition-zoom-9", link: "http://localhost:8000/challenges?id=9" }
     };
-
     addClassToZoomZone(classMap, challengeId);
     addLinkToZoomZone(classMap, challengeId);
+    
 });
+if (challengeId === 9) {
+    zoomZone.classList.add('belphegor');
+};
 </script>
 {% endblock %}

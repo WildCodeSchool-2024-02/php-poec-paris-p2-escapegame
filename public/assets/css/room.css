@@ -202,3 +202,9 @@ p {
 .image3 {
     background-image: url('/assets/images/rooms/3.png');
 }
+
+.belphegor {
+    background-image: url('/assets/images/challenges/9/belphegor.png');
+    opacity: 10%;
+    background-repeat: no-repeat;
+}
