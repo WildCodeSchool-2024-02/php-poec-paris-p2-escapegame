@@ -1,4 +1,6 @@
-{% extends 'layout.html.twig' %} {% block content %} {% if isCorrect %}
+{% extends 'layout.html.twig' %} 
+{% block content %} 
+{% if isCorrect %}
 <form method="post" action="/home">
     <h1>Vous avez gagné !</h1>
     <button type="submit">Prochain challenge</button>
@@ -8,4 +10,5 @@
     <h1>Perdu</h1>
     <button type="submit">Rejouer</button>
 </form>
-{% endif %} {% endblock %}
+{% endif %}
+{% endblock %}
