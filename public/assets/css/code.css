@@ -1,8 +1,49 @@
 img{
     width: 600px;
 }
+
+.enlarge-image {
+    position: relative;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.enlarge-image:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0.8); /* Light semi-transparent background */
+    z-index: 100;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(1.2); /* Increase brightness */
+}
+
+.swal2-popup.styled-alert {
+    border-radius: 5px;
+}
+.swal2-html-container #indice {
+    font-style: italic;
+    color: #ffcc00; /* Gold color */
+}
+
+
+
+    /* .enlarge-image:hover {
+        transform: scale(2.2);
+        z-index: 10;
+        margin-left: 500px;
+        margin-bottom: 300px;
+    } */
+
 body {
-    background-image: url("../images/rooms/menu.png");
+    background-image: url("../images/exhibition.png");
     background-size: cover ;
     background-repeat: no-repeat;
     color:white;
@@ -57,7 +98,7 @@ body {
 }
 
 h1 {
-    color:white;
+    color:rgb(255, 255, 255);
     margin: 0;
     padding-bottom: 30px;
     font-size: 4rem;
@@ -86,7 +127,7 @@ section {
 }
 
 div {
-    width: 50%;
+    width: 80%;
 }
 
 div, p {
