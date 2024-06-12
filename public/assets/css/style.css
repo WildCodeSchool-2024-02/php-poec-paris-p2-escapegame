@@ -3,6 +3,9 @@
 }
 body {
     display: block;
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .card__outer {

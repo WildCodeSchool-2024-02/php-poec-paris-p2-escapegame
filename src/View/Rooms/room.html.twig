@@ -38,27 +38,45 @@ console.error("Class not found for challengeId:", challengeId);
 }
 
 function addLinkToZoomZone(classMap, challengeId) {
-const zoomZone = document.getElementById('zoom-zone');
-if (! zoomZone) {
-console.error("Element with id 'zoom-zone' not found.");
-return;
-}
+	const zoomZone = document.getElementById('zoom-zone');
+	if (! zoomZone) {
+	console.error("Element with id 'zoom-zone' not found.");
+	return;
+	}
 
-if (classMap[challengeId]) {
-const link = document.createElement('a');
-link.href = classMap[challengeId].link;
-link.style.display = 'block';
+	if (classMap[challengeId] === classMap[9]) {
+		const link = document.createElement('a');
+        link.href = classMap[challengeId].link;
+        link.style.display = 'block';
+        link.style.width = '20vw';
+        link.style.height = '50vh';
+        link.style.position = 'relative';
 
-const clone = zoomZone.cloneNode(true);
+        // Remove existing children of zoomZone
+        while (zoomZone.firstChild) {
+            zoomZone.removeChild(zoomZone.firstChild);
+        }
 
-zoomZone.innerHTML = '';
+        // Append zoomZone to the link
+        link.appendChild(zoomZone.cloneNode(true));
 
-link.appendChild(clone);
+        // Add the link to the document, replacing the old zoomZone
+        zoomZone.replaceWith(link);
+	} else if (classMap[challengeId]) {
+	const link = document.createElement('a');
+	link.href = classMap[challengeId].link;
+	link.style.display = 'block';
 
-zoomZone.appendChild(link);
-} else {
-console.error("Class not found for challengeId:", challengeId);
-}
+	// const clone = zoomZone.cloneNode(true);
+
+	zoomZone.innerHTML = '';
+
+	// link.appendChild(clone);
+
+	zoomZone.appendChild(link);
+	} else {
+	console.error("Class not found for challengeId:", challengeId);
+	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -94,6 +112,12 @@ document.body.appendChild(paragraph);
 const button = document.getElementById('myButton');
 button.classList.toggle('hidden');
 }
+if (challengeId > 9) {
+body.classList.add('error_img');
+document.body.appendChild(paragraph);
+const button = document.getElementById('myButton');
+button.classList.toggle('hidden');
+};
 const classMap = {
 1: {
 class: "lobby-zoom-1",

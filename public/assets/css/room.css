@@ -76,7 +76,7 @@ div {
 .exhibition-zoom-9 {
     width: 20vw;
     height: 50vh;
-    margin: 0 0 20vh 10vw;
+    margin: -15vh 0 0 10vw;
 }
 
 .lobby-to-challenge {
@@ -159,7 +159,7 @@ p {
     text-align: center;
     margin-bottom: 10px;
     align-items: center;
-    padding: 10px;
+    padding: 1srem;
     cursor: pointer;
 }
 
