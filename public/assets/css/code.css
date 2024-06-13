@@ -1,6 +1,5 @@
 img{
-    width: auto;
-    max-height: 620px;
+    width: 100%;
     border-radius: 25px;
     margin:auto
 }

@@ -13,12 +13,13 @@ input {
     display: inline-block;
     border: none;
     cursor: pointer;
-    font-size: 2rem; /* Keep the font size as you specified */
+    font-size: 1.8rem; /* Keep the font size as you specified */
     padding: 16px 31px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #1a1a1a;
     margin-bottom: 2rem;
     max-width: 100%; /* Ensure it does not exceed the container's width */
+    height: 8vh;
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Ensure no overflow */
     text-overflow: ellipsis; /* Add ellipsis if text is too long */

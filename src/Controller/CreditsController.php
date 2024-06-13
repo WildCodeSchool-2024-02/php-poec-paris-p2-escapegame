@@ -100,6 +100,6 @@ class CreditsController extends AbstractController
 
     public function index(): string
     {
-        return $this->twig->render('Credits/index.html.twig', ['credits' => $this->credits]);
+        return $this->twig->render('credits.html.twig', ['credits' => $this->credits]);
     }
 }

@@ -1,11 +1,10 @@
 .card__content {
+    display: block;
     padding: 0;
 }
 
-article {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
+p {
+    margin-bottom: 2rem;
 }
 
 .puzzle {
@@ -14,47 +13,49 @@ article {
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-} 
+}
 
 .puzzle__container {
     display: flex;
     flex-direction: row;
     max-width: 500px;
+    min-width: 500px;
     flex-wrap: wrap;
-    gap: 0.5rem;
 }
 
 img {
-    height: 135px;
-    width: 155px;
+    height: 7.4rem;
+    width: 7.83rem;
 }
-
 
 .puzzle__solution-container {
     display: flex;
     flex-direction: row;
     max-width: 500px;
+    min-width: 480px;
     flex-wrap: wrap;
-    max-height:270px;
-    margin-top: 90px;
+    max-height: 700px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .puzzle__solution-container__block {
-    height: 135px;
-    width: 155px;
+    height: 7.4rem;
+    width: 7.83rem;
     border: 1px dotted black;
 }
 
 .puzzle__side-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     max-width: 25rem;
+    min-width: 500px;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    margin-top: 12%;
 }
 
 .puzzle__side {
-    height: 135px;
-    width: 155px;
+    height: 7.4rem;
+    width: 7.83rem;
     border: 1px dotted goldenrod;
 }
