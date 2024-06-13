@@ -14,6 +14,7 @@ return [
     'intro' => ['RoomController', 'showIntro',],
     'credits' => ['CreditsController', 'index',],
     'register' => ['UserController', 'register'],
+    'login' => ['UserController', 'login'],
     'room' => ['RoomController', 'show', ['rid', 'cid']],
     'challenges' => ['ChallengeController', 'show', ['id']],
     'challenges/validation' => ['ChallengeController', 'validate', ['id']],

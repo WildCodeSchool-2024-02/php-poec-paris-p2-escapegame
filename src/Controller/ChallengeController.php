@@ -35,7 +35,7 @@ class ChallengeController extends AbstractController
     public function validate(int $id)
     {
         $challenge = $this->challengeManager->selectOneById($id);
-
+      
         // TODO add userId dynamically
         //$this->saveManager->saveProgress(7, $id);
 
