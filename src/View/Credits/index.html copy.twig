@@ -1,10 +1,12 @@
 {% extends 'layout.html.twig' %} {% block stylesheet %}
 <link rel="stylesheet" href="/assets/css/credits.css" />
 {% endblock %} {% block content %}
-<main>
-    <section>
-        <h1><a href=''><span class='handwritten'>La Nuit</span> du Conservateur</a></h1>
-        <article>
+<div class="credits">
+    <span>
+        <span
+            ><h2><span>La Nuit</span>&nbsp;&nbsp;DU CONSERVATEUR</h2></span
+        >
+        <span>
             <p>Félicitations et merci pour votre participation !</p>
 
             <p>
@@ -22,48 +24,27 @@
             <p>Avec nos sincères remerciements,</p>
 
             <p>L'équipe du Musée du Louvre</p>
-        </article>
-    </section>
-    <aside class="scroll-blk">
-        <div class="scroll-text" id="data">
-            {% for category, persons in credits %}
+        </span>
+    </span>
+    <span id='scroll__target'>
+        {% for category, persons in credits %}
+        <span>
             <h3>{{ category|capitalize|replace({'_': ' '}) }}</h3>
             <ul>
                 {% for person in persons %}
                 <li>{{ person.firstname }} {{ person.lastname }}</li>
                 {% endfor %}
             </ul>
-            <p class="info-text"> </p>
             {% endfor %}
-        </div>
-    </aside>
-</main>
-<footer>
-    <a>Infos</a>
-    <a>2024</a>
-</footer>
+        </span>
+    </span>
+</div>
 {% endblock %}
 
 {% block javascript %}
 <script>
-var my_time;
-		var count = 0;
-		setTimeout('pageScroll()', 1200);
-		function pageScroll() {
-      // If condition to set repeat 
-			if (count < 2) {
-				var objDiv = document.getElementById("data");
-				objDiv.scrollTop = objDiv.scrollTop + 1;
-				if (objDiv.scrollTop == (objDiv.scrollHeight - 61)) {
-          setTimeout(function() {
-						objDiv.scrollTop = 0;
-						count++;
-            }, 1200);
-				}
-        //set scrolling time start
-				my_time = setTimeout('pageScroll()', 10);
-        //set scrolling time end
-			}
-		}
+document.getElementById('scroll__target').scrollIntoView({
+    behavior: 'smooth'
+});
 </script>
 {% endblock %}

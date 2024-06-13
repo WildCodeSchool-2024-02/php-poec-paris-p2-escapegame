@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/challenge2.css">
+	<link rel="stylesheet" href="/assets/css/challenge.css">
 	<link rel="stylesheet" href="/assets/css/anagramme.css">
 {% endblock %}
 
@@ -15,7 +15,7 @@
       <article>
          <p>{{ challenge.instructions }}</p>
          {% include 'Assets/wordplay_id_' ~ challenge.id ~'.html.twig' %}
-         <form method='post' action="validation/?id={{ challenge.id }}" id='validation'>
+         <form method='post' action="challenges/validation/?id={{ challenge.id }}" id='validation'>
             <input type="hidden" value="{{ challenge.id }}">
             <input type="text" name='user_answer'></input>
          </form>

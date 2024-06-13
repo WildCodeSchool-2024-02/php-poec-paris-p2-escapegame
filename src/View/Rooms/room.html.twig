@@ -1,63 +1,164 @@
-{% extends 'layout.html.twig' %} {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/room.css" />
-{% endblock %} {% block content %}
-<form method="post" action="challenges/type">
-    <img src="/assets/images/{{ room.name }}.png" id="zoom-image" />
-    <div id="zoom-zone"></div>
-    <div id="open-challenge-zone"></div>
-    <p id="description">{{ currentChallenge.description }}</p>
-    <button type="submit" id="button" disabled></button>
-</form>
-{% endblock %} {% block javascript %}
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/room.css"/>
+{% endblock %}
+{% block content %}
+	<form method="post" action="challenges/type">
+		<div id="zoom-zone"></div>
+	</form>
+	<main>
+		<button id='myButton'>?</button>
+		<p id="description" class='hidden'>{{ currentChallenge.description }}</p>
+	</main>
+{% endblock %}
+{% block javascript %}
 <script>
-    let imgElement = document.getElementById("zoom-image");
-    let zoomZone = document.getElementById("zoom-zone");
-    let openChallengeZone = document.getElementById("open-challenge-zone");
 
-    const url = new URL(window.location.href);
-    const params = new URLSearchParams(url.search);
-    let roomId = params.get("rid");
-    
-    (function () {
-        if (1 === +roomId) {
-            zoomZone.classList.add("lobby-zoom");
-        } else if (2 === +roomId) {
-            zoomZone.classList.add("gallery-zoom");
-        } else if (3 === +roomId) {
-            zoomZone.classList.add("exhibition-zoom");
+    function displayClueBasedOnChall() {
+        const button = document.getElementById('myButton');
+        button.addEventListener('click', () => {
+        const textElement = document.getElementById("description");
+        textElement.classList.toggle("hidden");
+        button.classList.toggle('hidden');
+        });
+}
+
+function addClassToZoomZone(classMap, challengeId) {
+const zoomZone = document.getElementById('zoom-zone');
+if (! zoomZone) {
+console.error("Element with id 'zoom-zone' not found.");
+return;
+}
+
+if (classMap[challengeId]) {
+zoomZone.classList.add(classMap[challengeId].class);
+} else {
+console.error("Class not found for challengeId:", challengeId);
+}
+}
+
+function addLinkToZoomZone(classMap, challengeId) {
+	const zoomZone = document.getElementById('zoom-zone');
+	if (! zoomZone) {
+	console.error("Element with id 'zoom-zone' not found.");
+	return;
+	}
+
+	if (classMap[challengeId] === classMap[9]) {
+		const link = document.createElement('a');
+        link.href = classMap[challengeId].link;
+        link.style.display = 'block';
+        link.style.width = '20vw';
+        link.style.height = '50vh';
+        link.style.position = 'relative';
+
+        // Remove existing children of zoomZone
+        while (zoomZone.firstChild) {
+            zoomZone.removeChild(zoomZone.firstChild);
         }
-    })();
 
-    function showText() {
-        let textElement = document.getElementById("description");
-        if (!textElement.classList.contains("visible")) {
-            textElement.classList.add("visible");
-        }
-    }
+        // Append zoomZone to the link
+        link.appendChild(zoomZone.cloneNode(true));
 
-    function activateFormButton() {
-        let formButton = document.getElementById("button");
-        formButton.disabled = false;
-        console.log("next page");
-    }
+        // Add the link to the document, replacing the old zoomZone
+        zoomZone.replaceWith(link);
+	} else if (classMap[challengeId]) {
+	const link = document.createElement('a');
+	link.href = classMap[challengeId].link;
+	link.style.display = 'block';
 
-    zoomZone.addEventListener("click", function () {
-        showText();
-        zoomZone.style.visibility = "hidden";
-        if (1 === +roomId) {
-            imgElement.classList.add("lobby-zoomed");
-            openChallengeZone.classList.add("lobby-to-challenge");
-        } else if (2 === +roomId) {
-            imgElement.classList.add("gallery-zoomed");
-            openChallengeZone.classList.add("gallery-to-challenge");
-        } else if (3 === +roomId) {
-            imgElement.classList.add("exhibition-zoomed");
-            openChallengeZone.classList.add("exhibition-to-challenge");
-        }
-    });
+	// const clone = zoomZone.cloneNode(true);
 
-    openChallengeZone.addEventListener("click", function () {
-        activateFormButton();
-    });
+	zoomZone.innerHTML = '';
+
+	// link.appendChild(clone);
+
+	zoomZone.appendChild(link);
+	} else {
+	console.error("Class not found for challengeId:", challengeId);
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+const zoomZone = document.getElementById('zoom-zone');
+const url = new URL(window.location.href);
+const params = new URLSearchParams(url.search);
+let roomId = params.get("rid");
+let challengeId = params.get("cid");
+const paragraph = document.createElement('p');
+const value = "Je crains que vous ne soyez un peu égaré, ici dans le silence d'une salle vide. Cependant, laissez-moi vous guider vers le chemin que vous avez précédemment emprunté avec succès. Continuez votre chemin vers cet endroit et que votre exploration se poursuive avec succès.";
+paragraph.textContent = value;
+
+roomId = roomId ? parseInt(roomId, 10) : null;
+challengeId = challengeId ? parseInt(challengeId, 10) : null;
+
+const body = document.getElementById('body');
+
+switch (roomId) {
+case 1: displayClueBasedOnChall();
+break;
+case 2: body.classList.add('image2');
+displayClueBasedOnChall();
+break;
+case 3: body.classList.add('image3');
+displayClueBasedOnChall();
+if (challengeId === 9) {
+zoomZone.classList.add('belphegor');
+};
+break;
+default:
+body.classList.add('error_img');
+document.body.appendChild(paragraph);
+const button = document.getElementById('myButton');
+button.classList.toggle('hidden');
+}
+if (challengeId > 9) {
+body.classList.add('error_img');
+document.body.appendChild(paragraph);
+const button = document.getElementById('myButton');
+button.classList.toggle('hidden');
+};
+const classMap = {
+1: {
+class: "lobby-zoom-1",
+link: "http://localhost:8000/challenges?id=1"
+},
+2: {
+class: "lobby-zoom-2",
+link: "http://localhost:8000/challenges?id=2"
+},
+3: {
+class: "lobby-zoom-3",
+link: "http://localhost:8000/challenges?id=3"
+},
+4: {
+class: "gallery-zoom-4",
+link: "http://localhost:8000/challenges?id=4"
+},
+5: {
+class: "gallery-zoom-5",
+link: "http://localhost:8000/challenges?id=5"
+},
+6: {
+class: "gallery-zoom-6",
+link: "http://localhost:8000/challenges?id=6"
+},
+7: {
+class: "exhibition-zoom-7",
+link: "http://localhost:8000/challenges?id=7"
+},
+8: {
+class: "exhibition-zoom-8",
+link: "http://localhost:8000/challenges?id=8"
+},
+9: {
+class: "exhibition-zoom-9",
+link: "http://localhost:8000/challenges?id=9"
+}
+};
+addClassToZoomZone(classMap, challengeId);
+addLinkToZoomZone(classMap, challengeId);
+
+});
 </script>
 {% endblock %}

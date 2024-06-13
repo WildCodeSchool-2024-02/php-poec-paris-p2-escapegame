@@ -1,5 +1,5 @@
 body {
-    background-image: url('../../images/rooms/intro.png');
+    background-image: url('/assets/images/rooms/intro.png');
     background-size: cover ;
     background-repeat: no-repeat;
     color:white;
@@ -25,6 +25,7 @@ main {
     margin-bottom: 15px;
     font-size: 2rem;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .hidden {
@@ -36,5 +37,5 @@ main {
 }
 
 .outro {
-    background-image: url('../../images/rooms/outro.png');
+    background-image: url('/assets/images/outro.jpg');
 }

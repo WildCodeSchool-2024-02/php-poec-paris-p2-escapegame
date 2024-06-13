@@ -1,72 +1,105 @@
-* {
-    margin: 0;
-}
-
-.credits {
-    display: flex;
-    flex-direction: row;
+body {
     background-image: url("../images/credits.png");
-    background-size: contain;
+    background-size: cover ;
     background-repeat: no-repeat;
+    color:white;
     height: 100vh;
     width: 100vw;
-    color: #ffffff;
-}
-
-div > span {
-    padding-top: 4.5rem;
-    flex-basis: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 4.5rem;
-    padding-left: 4.5rem;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-}
-
-h2 {
-    margin-top: 1.5rem;
-    font-size: 2rem;
-    font-weight: 700;
-    font-style: normal;
-}
-
-h2 > span {
-    font-family: "Luxurious Script", cursive;
-    font-size: 4rem;
-    font-weight: 400;
-    font-style: normal;
-}
-
-span > p {
-    margin-bottom: 1rem;
-    font-family: "Inria Serif", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-h3 {
-    padding-top: 1rem;
-    padding-bottom: 0.2rem;
-    text-transform: uppercase;
-    text-decoration: underline;
-}
-
-ul,
-ul > li {
-    list-style-type: none;
-    padding: 0;
-    line-height: 1.5rem;
-}
-
-.credits > span:nth-child(2) {
-    flex-grow: 1;
-    text-align: center;
-    height: calc(100vh - 30%);
-    overflow-x: hidden;
     font-family: "Ubuntu Condensed", sans-serif;
     font-weight: 400;
     font-style: normal;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    height: 92vh;
+}
+
+section {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+aside {
+    width: 40%;
+    height: 80vh;
+    margin-top: 20vh;
+}
+
+h1 {
+    margin: 0;
+    padding: 5vw;
+    font-size: 4rem;
+    flex: 1;
+}
+
+.handwritten {
+    font-family: 'Mervale Script', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+
+li {
+    list-style-type: none;
+    font-size: 2rem;
+    line-height: 3rem;
+    text-align: center;
+}
+
+p {
+    line-height: 3rem;
+}
+
+footer {
+    padding: 2vw;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    font-family: "Ubuntu Condensed", sans-serif;
+    margin: 2rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.scroll-text{
+    overflow-y: auto;
+    height: 70%;
+    overflow: hidden;
+    text-align: left;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: 'MyriadPro-Regular';
+}
+
+.scroll-text p{
+    margin: 0px;
+    font-size: 12px;
+    color: #000;
+    font-family: 'MyriadPro-Regular';
+    padding-bottom: 5px;
+}
+.info-text{
+    text-align: center;
+    font-size: 11px;
+    text-decoration: underline;
+    line-height: 1.2;
+    color: #fff;
+    margin-top: 5px;
+    font-family: 'MyriadPro-Regular';
 }

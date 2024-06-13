@@ -76,7 +76,7 @@ div {
 .exhibition-zoom-9 {
     width: 20vw;
     height: 50vh;
-    margin: 0 0 20vh 10vw;
+    margin: -15vh 0 0 10vw;
 }
 
 .lobby-to-challenge {
@@ -159,7 +159,7 @@ p {
     text-align: center;
     margin-bottom: 10px;
     align-items: center;
-    padding: 10px;
+    padding: 1srem;
     cursor: pointer;
 }
 
@@ -201,4 +201,14 @@ p {
 
 .image3 {
     background-image: url('/assets/images/rooms/3.png');
+}
+
+.error_img {
+    background-image: url('/assets/images/error.jpg');
+}
+
+.belphegor {
+    background-image: url('/assets/images/challenges/9/belphegor.png');
+    opacity: 10%;
+    background-repeat: no-repeat;
 }
