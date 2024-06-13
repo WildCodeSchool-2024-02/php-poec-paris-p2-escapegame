@@ -8,13 +8,11 @@ use App\Model\SaveManager;
 class ChallengeController extends AbstractController
 {
     private ChallengeManager $challengeManager;
-    private SaveManager $saveManager;
 
     public function __construct()
     {
         parent::__construct();
         $this->challengeManager = new ChallengeManager();
-        $this->saveManager = new SaveManager();
     }
 
     /**
@@ -36,8 +34,7 @@ class ChallengeController extends AbstractController
     {
         $challenge = $this->challengeManager->selectOneById($id);
 
-        // TODO add userId dynamically
-        $this->saveManager->saveProgress(7, $id);
+        $challenge = $this->challengeManager->selectOneById($id);
 
         return $this->twig->render('Challenges/validate.html.twig', [
             'isCorrect' => $_POST['user_answer'] === $challenge['answer'],

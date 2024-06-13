@@ -52,4 +52,20 @@ class UserController extends AbstractController
             return $this->twig->render('register.html.twig', []);
         }
     }
+
+    public function login()
+    {
+        if (
+            $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) ||
+            isset($_POST['email']) &&
+            isset($_POST['password'])
+        ) {
+            $currentUser = $this->userManager->selectOneByEmail($_POST['email']);
+            if (($_POST['password']) === $currentUser['password']) {
+                echo 'user login successful';
+            }
+            header("Location: /intro");
+        }
+        return $this->twig->render('login.html.twig', []);
+    }
 }
