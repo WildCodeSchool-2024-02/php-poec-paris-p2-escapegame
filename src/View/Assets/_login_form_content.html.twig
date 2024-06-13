@@ -1,7 +1,8 @@
 {% block formContent %}
-<h4>Connexion</h4>
-<label for="email">VOTRE E-MAIL</label>
+<h2>Connexion</h2>
+<label for="email">E-MAIL</label>
 <input type="email" name="email" />
-<label for="password">VOTRE MOT DE PASSE</label>
+<label for="password">MOT DE PASSE</label>
 <input type="password" name="password" />
-{% include 'Assets/_connectionButton.html.twig' %} {% endblock %}
+<button class="register-button" type="submit">Rejoindre l'aventure</button>
+{% endblock %}

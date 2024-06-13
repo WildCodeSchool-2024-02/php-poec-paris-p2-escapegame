@@ -8,38 +8,11 @@ body {
     font-style: normal;
 }
 
-.card__outer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90vh;
-    width: 90vw;
-    background-color: #000000;
-    border-radius: 20px;
-}
-
-.card__inner {
-    height: 60vh;
-    width: 80vw;
-    background-color: #dedede;
-    border-radius: 20px;
-    box-shadow: 5px 5px 5px darkgoldenrod;
-}
-
-.card__content {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-h2 {
+/* h2 {
     align-self: flex-start;
     margin-left: 5rem;
     color: #ffffff;
-}
+} */
 
 button {
     height: 4rem;
@@ -84,10 +57,9 @@ button#clue:active {
 
 aside {
     grid-column-start: 1;
-    background-color: #1a1a1a;
 }
 
-span {
+aside > span {
     display: inline-block;
     grid-column-start: 1;
     line-height: 2rem;
@@ -96,36 +68,19 @@ span {
     margin-top: 10rem;
 }
 
-
-h4, p {
+h4, span > p {
     margin: auto;
 }
 
-input {
+/* input {
     height: 1.5rem;
     width: 100%;
     border-radius: 10px;
     background-color: #243b55;
     color: #ffffff;
-}
+} */
 
-form {
-    grid-column-start: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.2rem;
-    height: 400px;
-    padding: 1.5rem;
-    margin-top: 10rem;
-    margin-right: 5rem;
-    background-color: #141e30;
-    border-radius: 20px;
-    color: #ffffff;
-}
-
-.registerButton {
+/* .registerButton {
     align-self: center;
     margin-top: 0.8rem;
     background-color: #f4b659;
@@ -145,4 +100,4 @@ form {
     background-color: gold;
     padding: 1.5rem;
     transition: 0.5s;
-}
+} */

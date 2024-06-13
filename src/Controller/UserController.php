@@ -47,10 +47,10 @@ class UserController extends AbstractController
                     $_POST['email'],
                     $_POST['password']
                 );
+                header("Location: /intro");
             }
-            header("Location: /intro");
-            return $this->twig->render('register.html.twig', []);
         }
+        return $this->twig->render('register.html.twig', []);
     }
 
     public function login()

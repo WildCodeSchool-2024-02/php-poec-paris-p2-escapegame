@@ -1,12 +1,19 @@
-{% extends 'layout.html.twig' %} {% block stylesheet %}<link
-    rel="stylesheet"
-    href="/assets/css/register.css"
-/>{% endblock %} {% block content %}
-<div class="register_login">
-    {% include 'Assets/_form.html.twig' with {'formAction': 'register'} %}
-        <p>
-            Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a>
-        </p>
-    </form>
-</div>
+{% extends 'layout.html.twig' %} 
+{% block stylesheet %}<link rel="stylesheet" href="/assets/css/connection.css"/>
+{% endblock %} 
+{% block content %}
+<main>
+    <aside>
+        <h1>Louvre</h1>
+			<p>Nous sommes ravis de vous inviter à participer à notre nouveau jeu interactif. Pendant ce jeu, vous aurez l'occasion de découvrir des trésors artistiques du Musée du Louvre et d'en apprendre davantage sur leur histoire fascinante. 
+			</p>
+			<p>Préparez-vous à une aventure captivante à travers les époques et les chefs-d'œuvre qui ont marqué l'histoire de l'art. Explorez, résolvez des énigmes et laissez-vous surprendre par les secrets cachés de notre musée. </p>
+			<p>Bonne chance et amusez-vous bien !</p>
+    </aside>
+    <section>
+        <div>
+            {% include 'Assets/_form.html.twig' with {'formAction': 'register'} %}
+            <p class='redirect'>Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a></p>
+        </div>
+    </section>
 {% endblock %}

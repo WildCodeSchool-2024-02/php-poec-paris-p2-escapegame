@@ -12,6 +12,7 @@ use App\Controller\HomeController;
 return [
     '' => ['HomeController', 'index',],
     'intro' => ['RoomController', 'showIntro',],
+    'info' => ['HomeController', 'showInfo',],
     'credits' => ['CreditsController', 'index',],
     'register' => ['UserController', 'register'],
     'login' => ['UserController', 'login'],

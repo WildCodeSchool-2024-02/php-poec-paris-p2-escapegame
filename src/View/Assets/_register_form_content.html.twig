@@ -1,5 +1,5 @@
 {% block formContent %}
-<h4>Inscrivez-vous pour jouer !</h4>
+<h2>Inscrivez-vous pour jouer !</h2>
 <label for="name">VOTRE NOM D'UTILISATEUR</label>
 <input type="text" name="name" />
 <label for="email">VOTRE E-MAIL</label>
@@ -8,4 +8,5 @@
 <input type="password" name="password" />
 <label for="confirmPassword">CONFIRMEZ LE MOT DE PASSE</label>
 <input type="password" name="confirmPassword" />
-{% include 'Assets/_connectionButton.html.twig' %} {% endblock %}
+<button class="register-button" type="submit">Rejoindre l'aventure</button>
+{% endblock %}
