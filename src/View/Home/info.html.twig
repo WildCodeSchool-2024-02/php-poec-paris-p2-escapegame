@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+	La Nuit du Conservateur
+{%
+endblock %}
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/info.css"/>
+{% endblock %}
+{% block content %}
+	<main>
+		<section>
+			<h1>Louvre</h1>
+			<p>Nous sommes ravis de vous présenter l'équipe talentueuse qui a travaillé sur ce projet passionnant. Ce projet n'aurait pas été possible sans la créativité et le dévouement de trois étudiants exceptionnels de la Wild Code School : Madani Guenn, Anna Gosme et Cyril Leconte.
+			</p>
+			<p>Leur travail acharné et leur expertise ont été essentiels pour donner vie à cette expérience interactive.</p>
+			<p>Merci de rejoindre notre aventure et de découvrir les trésors du Musée du Louvre à travers leur innovation et leur passion.
+				Avec toute notre gratitude,
+				L'équipe du Musée du Louvre</p>
+		</section>
+		<aside>
+			<h2>Liens de nos collaborateurs</h2>
+            <h3>Madani GUENN</h3>
+			<div>
+				
+				<a href='https://github.com/MadCode78'><img src='/assets/images/icones/github.png'></a>
+				<a href=''><img src='/assets/images/icones/linkedin.png'></a>
+			</div>
+            <h3>Anna GOSME</h3>
+			<div>
+				
+				<a href='https://github.com/AnnaGosme'><img src='/assets/images/icones/github.png'></a>
+				<a href='https://www.linkedin.com/in/anna-gosme/'><img src='/assets/images/icones/linkedin.png'></a>
+			</div>
+            <h3>Cyril LECONTE</h3>
+			<div>
+				
+				<a href='https://github.com/Kuriiios'><img src='/assets/images/icones/github.png'></a>
+				<a href='https://www.linkedin.com/in/cyril-leconte-1b0742217/'><img src='/assets/images/icones/linkedin.png'></a>
+			</div>
+            <button class='menu' onclick="redirectToPage()">Retour au menu</button>
+		</aside>
+	</main>
+{% endblock %}
+
+{% block javascript %}
+ <script>
+        function redirectToPage() {
+            window.location.href = 'https://http://localhost:8000/';
+        }
+    </script>
+{% endblock %}
