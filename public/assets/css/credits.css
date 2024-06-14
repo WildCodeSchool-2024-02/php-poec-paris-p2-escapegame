@@ -103,3 +103,7 @@ h3 {
     margin-top: 5px;
     font-family: 'MyriadPro-Regular';
 }
+
+audio {
+    margin: 0 auto;
+}
